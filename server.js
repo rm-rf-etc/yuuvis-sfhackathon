@@ -11,41 +11,40 @@ require('gun/lib/unset.js');
 // });
 const gun = Gun({
   web: server,
-  radisk: false,
+  // radisk: false,
   localStorage: false,
 });
 
 server.listen(7700, () => console.info('Server listening on localhost:7700/gun'));
 
 const seeds = {
-  'client/1': {
-    url: '/',
+  'user/1': {
     name: 'Janis Joplin',
+    searchString: '',
   },
-  'client/2': {
-    name: 'John Jacob Jingleheimer Schmidt',
+  'email/1': {
+    summary: 'lorem ipsum',
+    raw: 'lorem ipsum delor sit amit',
   },
-  'meta/1': {
-    data: 'lorem of the ipsums',
+  'email/2': {
+    summary: 'lorem ipsum',
+    raw: 'lorem ipsum delor sit amit',
   },
-  'meta/2': {
-    data: 'delor sit amit',
+  'email/3': {
+    summary: 'lorem ipsum',
+    raw: 'lorem ipsum delor sit amit',
   },
-  'meta/3': {
-    data: '123534578',
-  },
-  'meta/4': {
-    data: 'filler!',
+  'email/4': {
+    summary: 'lorem ipsum',
+    raw: 'lorem ipsum delor sit amit',
   },
 };
 const attachments = [
-  ['clients', 'client/1'],
-  ['clients', 'client/2'],
-  ['client/1.metas', 'meta/1'],
-  ['client/1.metas', 'meta/2'],
-  ['client/1.metas', 'meta/3'],
-  ['client/2.metas', 'meta/3'],
-  ['client/2.metas', 'meta/4'],
+  ['user/1.threads.thread/1', 'email/1'],
+  ['user/1.threads.thread/1', 'email/2'],
+  ['user/1.threads.thread/2', 'email/3'],
+  ['user/2.threads.thread/2', 'email/3'],
+  ['user/2.threads.thread/2', 'email/4'],
 ];
 
 Object.entries(seeds).forEach(([key, val]) => {
@@ -53,4 +52,8 @@ Object.entries(seeds).forEach(([key, val]) => {
 });
 attachments.forEach(([parent, child]) => {
   gun.path(parent).set(gun.get(child));
+});
+
+gun.path('user/1.searchString').on((value) => {
+  console.log(value);
 });

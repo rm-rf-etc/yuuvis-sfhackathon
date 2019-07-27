@@ -17,7 +17,6 @@ const Div = styled.div`
 `;
 
 const RawDoc = () => {
-    console.log('my state');
     return (
         <Div id="rawContainer">
             <h1>RAW View</h1>
