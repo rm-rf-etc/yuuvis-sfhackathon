@@ -12,16 +12,18 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: row;
 	border: 2px solid gray;
-	.search-wrap{
+	height: calc(100vh - 42px);
+	max-height: 100vh;
+
+	.col{
+	    display: flex;
 	    flex: 1;
 	    border-right: 1px solid gray;
-	}
-	.summary-raw-wrap{
-	    flex: 2;
-	    display: flex;
-	    flex-direction: column;
-	    .col{
-	        flex: 1;
+	    &:not():nth-child(2){
+	        border-right: 0;
+	    }
+	    &:nth-child(1){
+	        flex: .5;
 	    }
 	}
 `;
@@ -30,19 +32,17 @@ const App = () => {
   return (
       <Page>
           <Container className="container">
-              <div className="search-wrap">
+              <div className="col">
                   {/*Search-UI area*/}
                   <SearchUi />
               </div>
-              <div className="summary-raw-wrap">
-                  <div className="col">
-                      {/*Summary display area*/}
-                      <Summary/>
-                  </div>
-                  <div className="col">
-                      {/*Raw Document display area*/}
-                      <Raw/>
-                  </div>
+              <div className="col">
+                  {/*Summary display area*/}
+                  <Summary/>
+              </div>
+              <div className="col">
+                  {/*Raw Document display area*/}
+                  <Raw/>
               </div>
           </Container>
       </Page>
