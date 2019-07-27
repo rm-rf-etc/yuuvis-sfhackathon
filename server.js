@@ -39,13 +39,19 @@ const seeds = {
     summary: 'lorem ipsum',
     raw: 'lorem ipsum delor sit amit',
   },
+  'email/5': {
+    summary: 'lorem ipsum',
+    raw: 'lorem ipsum delor sit amit',
+  },
 };
 const attachments = [
-  ['user/1.threads.thread/1', 'email/1'],
-  ['user/1.threads.thread/1', 'email/2'],
-  ['user/1.threads.thread/2', 'email/3'],
-  ['user/2.threads.thread/2', 'email/3'],
-  ['user/2.threads.thread/2', 'email/4'],
+  ['thread/1', 'email/1'],
+  ['thread/1', 'email/2'],
+  ['thread/2', 'email/3'],
+  ['thread/2', 'email/4'],
+  ['thread/2', 'email/5'],
+  ['user/1.threads', 'thread/1'],
+  ['user/1.threads', 'thread/2'],
 ];
 
 Object.entries(seeds).forEach(([key, val]) => {
