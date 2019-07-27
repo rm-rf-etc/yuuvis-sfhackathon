@@ -18,49 +18,34 @@ const gun = Gun({
 server.listen(7700, () => console.info('Server listening on localhost:7700/gun'));
 
 const seeds = {
-  'page/1': {
+  'client/1': {
     url: '/',
-    component_name: 'Homepage',
-    display_title: 'Our Slogan',
-    page_title: 'Welcome!',
+    name: 'Janis Joplin',
   },
-  'page/2': {
-    url: '/products',
-    component_name: 'Products',
-    display_title: 'Our Slogan Again!',
-    page_title: 'Whoa, products!',
+  'client/2': {
+    name: 'John Jacob Jingleheimer Schmidt',
   },
-  'row/1': {
-    component_name: 'TwoColumnFeaturedImage',
-    display_title: 'Row Title Two',
-    display_content: 'Filler content filler content filler content.',
-    orientation: 'image_left',
+  'meta/1': {
+    data: 'lorem of the ipsums',
   },
-  'row/2': {
-    component_name: 'TwoColumnFeaturedImage',
-    display_title: 'Row Title Three',
-    display_content: 'Filler content filler content filler content.',
-    orientation: 'image_right',
+  'meta/2': {
+    data: 'delor sit amit',
   },
-  'row/3': {
-    component_name: 'OneColumnRow',
-    display_title: 'Row Title One',
-    display_content: 'Filler content filler content filler content.',
+  'meta/3': {
+    data: '123534578',
   },
-  'row/4': {
-    component_name: 'CategoriesRow',
-    display_title: 'What can you do with CollabNet?',
-    display_content: 'Filler content filler content filler content.',
+  'meta/4': {
+    data: 'filler!',
   },
 };
 const attachments = [
-  ['pages', 'page/1'],
-  ['pages', 'page/2'],
-  ['page/1.rows', 'row/1'],
-  ['page/1.rows', 'row/2'],
-  ['page/1.rows', 'row/3'],
-  ['page/2.rows', 'row/3'],
-  ['page/2.rows', 'row/4'],
+  ['clients', 'client/1'],
+  ['clients', 'client/2'],
+  ['client/1.metas', 'meta/1'],
+  ['client/1.metas', 'meta/2'],
+  ['client/1.metas', 'meta/3'],
+  ['client/2.metas', 'meta/3'],
+  ['client/2.metas', 'meta/4'],
 ];
 
 Object.entries(seeds).forEach(([key, val]) => {
