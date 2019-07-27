@@ -1,16 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setSearch } from '../../actions';
 
-const SearchUI = ({ defaultValue = 'Search for stuff!' }) => {
-	const [textValue, setSearchValue] = React.useState(defaultValue);
+const SearchUI = ({ setSearch, searchString }) => {
 	return (
 		<div>
 			<input
 				type="text"
-				value={textValue}
-				onChange={({ target }) => { setSearchValue(target.value) }}
+				value={searchString}
+				placeholder="Your search query..."
+				onChange={({ target }) => setSearch(target.value)}
 			/>
 		</div>
 	);
 };
 
-export default SearchUI;
+const mapStateToProps = (state) => ({
+	searchString: state.searchString,
+});
+const mapDispatchToProps = (dispatch) => ({
+	setSearch: (str) => dispatch(setSearch({ searchString: str })),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchUI);
