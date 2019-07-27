@@ -5,6 +5,7 @@ import 'gun/lib/open.js';
 import 'gun/lib/load.js';
 import 'gun/lib/then.js';
 import { omit } from 'lodash';
+import { userDataLoaded, threadsLoaded } from '../actions';
 import actionTypes from '../actions/types';
 
 const gun = new Gun(['http://localhost:7700/gun']);
@@ -16,19 +17,19 @@ export const onStartup = createLogic({
 
 	async process(_, dispatch, done) {
 
-		const rawData = await gun.path('user/1.threads').load().then();
-		const threadsList = Object.keys(omit(rawData, '_'));
+		gun.path('user/1.searchString').once((value) => {
+			dispatch(userDataLoaded({ searchString: value }));
+		});
+
+		const rawThreads = await gun.path('user/1.threads').load().then();
+		const threadsList = Object.keys(omit(rawThreads, '_'));
 
 		if (!threadsList) {
-			console.log('No data found');
+			console.error('No data found');
 			return done();
 		}
 
-		console.log('THREADS FOUND:', threadsList);
-		dispatch({
-			type: actionTypes.DATA_LOADED,
-			payload: threadsList,
-		});
+		dispatch(threadsLoaded(threadsList));
 
 		return done();
 	}

@@ -5,6 +5,7 @@ require('gun/lib/path.js');
 require('gun/lib/open.js');
 require('gun/lib/load.js');
 require('gun/lib/unset.js');
+const { debounce } = require('lodash');
 // require('@notabug/gun-lmdb').attachToGun(Gun, {
 //   path: path.resolve(__dirname, 'lmdb_database'),
 //   mapSize: 1024 ** 2 // max size of database in bytes
@@ -54,6 +55,8 @@ attachments.forEach(([parent, child]) => {
   gun.path(parent).set(gun.get(child));
 });
 
-gun.path('user/1.searchString').on((value) => {
+const searchHandler = debounce((value) => {
   console.log(value);
-});
+}, 500, { 'maxWait': 1000 });
+
+gun.path('user/1.searchString').on(searchHandler);

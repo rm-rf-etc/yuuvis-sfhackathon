@@ -12,12 +12,19 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: row;
 	border: 2px solid gray;
+	height: calc(100vh - 42px);
+	max-height: 100vh;
+
 	.col{
+	    display: flex;
 	    flex: 1;
 	    border-right: 1px solid gray;
-	    &:nth-child(3){
-            border-right: 0;
-        }
+	    &:not():nth-child(2){
+	        border-right: 0;
+	    }
+	    &:nth-child(1){
+	        flex: .5;
+	    }
 	}
 `;
 
