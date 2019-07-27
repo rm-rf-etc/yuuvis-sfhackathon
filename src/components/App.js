@@ -1,21 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import styled from 'styled-components';
+import Summary from './john-components/Summary';
+import Raw from './john-components/Raw';
 
-const Div = styled.div`
-	display: block;
-	text-align: center;
+const Page = styled.div`
+    padding: 20px;
+`;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: row;
+	border: 2px solid gray;
+	.col{
+	    flex: 1;
+	    border-right: 1px solid gray;
+	    &:nth-child(3){
+            border-right: 0;
+        }
+	}
 `;
 
 const App = () => {
   return (
-    <Div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Edit <code>src/App.js</code> and save to reload.</p>
-        React App
-      </header>
-    </Div>
+      <Page>
+          <Container className="container">
+              <div className="col">
+                  {/*Search-UI area*/}
+              </div>
+              <div className="col">
+                  {/*Summary display area*/}
+                  <Summary/>
+              </div>
+              <div className="col">
+                  {/*Raw Document display area*/}
+                  <Raw/>
+              </div>
+          </Container>
+      </Page>
   );
 };
 
