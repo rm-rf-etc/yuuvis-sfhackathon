@@ -1,5 +1,5 @@
-import initialState from './initialState';
 import { createStore, applyMiddleware, compose } from 'redux';
+import initialState from './initialState';
 import rootReducer from '../reducers';
 import * as logic from '../logic';
 import { createLogicMiddleware } from 'redux-logic';
