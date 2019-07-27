@@ -7,6 +7,7 @@ export default (state = initialState, action = {}) => {
   	case actionTypes.SET_SEARCH: {
   		return {
   			...state,
+  			statusSearchActive: true,
   			searchString: action.payload.searchString,
   		}
   	}

@@ -8,7 +8,6 @@ const Div = styled.div`
 `;
 
 const Summary = () => {
-    console.log('my state');
     return (
         <Div>
             <h1>Summary</h1>

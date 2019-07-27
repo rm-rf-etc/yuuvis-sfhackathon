@@ -8,6 +8,7 @@ import { omit } from 'lodash';
 import actionTypes from '../actions/types';
 
 const gun = new Gun(['http://localhost:7700/gun']);
+window.gun = gun;
 
 export const onStartup = createLogic({
 
@@ -15,32 +16,47 @@ export const onStartup = createLogic({
 
 	async process(_, dispatch, done) {
 
-		const rawData = await gun.get('clients').load().then();
-		const clientsList = Object.keys(omit(rawData, '_'));
+		const rawData = await gun.path('user/1.threads').load().then();
+		const threadsList = Object.keys(omit(rawData, '_'));
 
-		if (!clientsList) {
+		if (!threadsList) {
 			console.log('No data found');
 			return done();
 		}
-		console.log('the data', clientsList);
+
+		console.log('THREADS FOUND:', threadsList);
 		dispatch({
 			type: actionTypes.DATA_LOADED,
-			payload: clientsList,
+			payload: threadsList,
 		});
 
 		return done();
 	}
 });
 
-export const rootLogic = createLogic({
+export const searchStateLogic = createLogic({
 
-	type: [actionTypes.ALL],
+	type: [actionTypes.SET_SEARCH],
 
-	process({ getState, action }, dispatch, done) {
+	async process({ action }, _, done) {
 
-		console.log('Action received:', action);
-		console.log('Current state:', JSON.stringify(getState(), null, '  '));
+		const { searchString } = action.payload;
+
+		await gun.path('user/1.searchString').put(searchString);
 
 		return done();
 	}
 });
+
+// export const rootLogic = createLogic({
+
+// 	type: [actionTypes.ALL],
+
+// 	process({ getState, action }, dispatch, done) {
+
+// 		console.log('Action received:', action);
+// 		console.log('Current state:', JSON.stringify(getState(), null, '  '));
+
+// 		return done();
+// 	}
+// });

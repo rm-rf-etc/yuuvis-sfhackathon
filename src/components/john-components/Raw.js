@@ -8,7 +8,6 @@ const Div = styled.div`
 `;
 
 const RawDoc = () => {
-    console.log('my state');
     return (
         <Div>
             <h1>Raw Doc</h1>
