@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Summary from './john-components/Summary';
 import Raw from './john-components/Raw';
+import SearchUi from './SearchUi';
 
 const Page = styled.div`
     padding: 20px;
@@ -26,6 +27,7 @@ const App = () => {
           <Container className="container">
               <div className="col">
                   {/*Search-UI area*/}
+                  <SearchUi />
               </div>
               <div className="col">
                   {/*Summary display area*/}
