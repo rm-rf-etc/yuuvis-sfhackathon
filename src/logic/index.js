@@ -27,6 +27,7 @@ export const onStartup = createLogic({
 			type: actionTypes.DATA_LOADED,
 			payload: clientsList,
 		});
+
 		return done();
 	}
 });
@@ -40,6 +41,6 @@ export const rootLogic = createLogic({
 		console.log('Action received:', action);
 		console.log('Current state:', JSON.stringify(getState(), null, '  '));
 
-	return done();
+		return done();
 	}
 });
