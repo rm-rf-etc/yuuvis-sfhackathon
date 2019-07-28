@@ -5,9 +5,13 @@ import { safeId } from '../../helpers';
 
 const Div = styled.div`
 	display: flex;
+	flex: 1;
 	text-align: left;
 	flex-direction: column;
-	padding: 10px;
+	padding: 0 10px;
+	overflow: hidden;
+	position: relative;
+	overflow-y: scroll;
 	ul{
 	    margin: 0;
 	    padding: 0;
@@ -36,7 +40,7 @@ const Div = styled.div`
 
 
 const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); return;
-    const singleSum = document.getElementById('sum' +sumID);
+    const singleSum = document.getElementById('sum' + sumID);
     const needle = singleSum.innerHTML;
     const rawDoc = document.getElementById(emailID);
 
@@ -72,16 +76,16 @@ const scrollToEmail  = (emailID) => { //console.log(emailID); return;
     singleEmail.scrollIntoView({behavior: "smooth", block: "start", inline: "center"});
 }
 
-const SummaryNote = ({ parentId, notes, groupId }) => (
-    <li id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
+const SummaryNote = ({ parentId, notes, groupId, index }) => (
+    <li className={parentId === "email_1" ? "activeSum" :  ""} id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
         {Object.entries(notes).map(([noteId, note]) => {
-            const sumId = `sum${safeId(noteId)}`;
+            const sumId = `sum${safeId(noteId  + parentId)}`;
             return (
                 <p
                     id={sumId}
                     key={sumId}
-                    onMouseEnter={() => highlightString(noteId, parentId)}
-                    onMouseOut={() => removeStringHighlight(noteId, parentId)}
+                    onMouseEnter={() => highlightString((noteId + parentId), parentId)}
+                    onMouseOut={() => removeStringHighlight((noteId + parentId), parentId)}
                 >
                     {note}
                 </p>

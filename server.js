@@ -56,27 +56,58 @@ const seeds = {
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Please approve my vacation request',
-    body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
+    body: `As requested a "final" meeting has been arranged on Monday, 9th August at 
+Clifford Chance (a room has been booked for the full day).  Could you please 
+let me know asap if this is going to be a problem. I am waiting to hear from David Gilbert/Ken Raisler of Sullivan & Cromwell to 
+ascertain who will be attending.  I will follow up this pm.
+
+Andrew Wilkinson will not be able to attend this meeting - he is on paternity 
+leave at present.`,
     notes: {
-      '0': 'at an alarming rate',
-      '1': 'The consequences are proving to be profound',
-      '2': 'aquifers dry up',
+      '0': '"final" meeting has been arranged on Monday',
+      '1': 'Could you please \nlet me know asap if this is going to be a problem.',
+      '2': 'Andrew Wilkinson will not be able to attend this meeting',
     },
   },
   'email/2': {
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Please approve my vacation request',
-    body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    subject: 'Gary\'s OTC trading',
+    body: `Is Mark Taylor aware of Gary's plans?  I know from my conversations with Mark 
+about support for trading in South America that very few people in Enron, 
+other than Don and a few commercial guys in Brazil, believe that there will 
+be any action to speak of on the trading side in South America.  If Gary does 
+anything other than trade from ECT on exchange or through swaps that he will 
+have to take into consideration who will provide legal and administrative 
+support and from where.`,
+      notes: {
+          '0': 'Is Mark Taylor aware of Gary\'s plans?',
+          '1': ' Don and a few commercial guys in Brazil, believe that there will \nbe any action to speak of on the trading side in South America',
+          '2': 'take into consideration who will provide legal and administrative \nsupport and from where',
+      },
   },
   'email/3': {
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Please approve my vacation request',
-    body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    subject: 'Gary\'s OTC trading',
+      body: `Gary is going to provide me with a list of OTC products for priority 
+trading.  He has been in discussions with tax and structuring in Houston for 
+the S. Cone.  The group has considered (i) trading onshore, (ii) trading as a 
+sub of Elektro (and can this be a sub of an offshore entity?) and (iii) 
+trading offshore.  They have studied the CC5 account requirements and have 
+had conversations wtih JP Morgan and BofA.  There appears to be little 
+communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo 
+next week.  I'll be more specific in a day or so.  I'm still having problems 
+tying into the database (this is ridiculous!).  Did you receive my voice 
+mail?  SS`,
+      notes: {
+          '0': 'Gary is going to provide me with a list of OTC products',
+          '1': 'can this be a sub of an offshore entity?',
+          '2': 'I\'m still having problems \ntying into the database (this is ridiculous!)',
+      },
   },
   'email/4': {
     highlighted: false,

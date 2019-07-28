@@ -112,7 +112,7 @@ const SingleEmail = (props) => {
     const { from: _from, subject, body} = entry;
 
     return (
-        <Email id={id} key={id} onMouseUp={()=>showAddNote()}>
+        <Email className={id === "email_1" ? "active" : ""} id={id} key={id} onMouseUp={()=>showAddNote()}>
             <div className="email-header">
                 <p>{_from}@email.com</p>
                 <p>to Me</p>

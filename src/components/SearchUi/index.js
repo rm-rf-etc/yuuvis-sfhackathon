@@ -9,7 +9,68 @@ const Row = styled.div`
 const Input = styled.input`
 	width: 100%;
 	box-sizing: border-box;
+	padding: 10px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	border: 2px solid gray;
 `;
+const SearchBox = styled.div`
+	background: white;
+	padding: 15px;
+	.btn-wrapper{
+		width: 100%;
+		text-align: right;
+	}
+	.btn{
+        padding: 8px 24px;
+        color: white;
+        font-size: 20px;
+        border: none;
+        width: 100%;
+        max-width: 48%;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .btn-red{
+        background: #b53942;
+        margin-right: 2%;
+    }
+    .btn-green{
+        background: #50bb31;
+    }
+`;
+
+const ResultWrap = styled.div`
+	h2{
+		font-size: 20px;
+		text-align: center;
+	}
+`;
+
+const ResultsList = styled.ul`
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	li{
+		background: white;
+		padding: 10px;
+		margin-bottom: 5px;
+		opacity: .6;
+		&.activeThread{
+			opacity: 1;
+		}
+		h3{
+			margin: 0;
+			font-size: 20px;
+			margin-bottom: 5px;
+		}
+		p{
+			font-size: 16px;
+			margin: 0;
+		}
+	}
+`;
+
 
 
 const SearchUI = ({ results = [] }) => {
@@ -30,7 +91,9 @@ const SearchUI = ({ results = [] }) => {
 
 	return (
 		<Row>
-			<div>
+
+			<SearchBox>
+                <h1>Compendium</h1>
 				<Input
 					type="text"
 					value={searchString}
@@ -40,10 +103,31 @@ const SearchUI = ({ results = [] }) => {
 						setSearch(target.value);
 					}}
 				/>
-			</div>
-			<div>
-				<ul>{processedResults}</ul>
-			</div>
+				<div className="btn-wrapper">
+                    <button className="btn btn-green">Search</button>
+				</div>
+			</SearchBox>
+			<ResultWrap>
+				<h2>Results:</h2>
+				<ResultsList>
+					<li className="activeThread">
+						<h3>Thread 1</h3>
+						<p>Subject: LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST</p>
+					</li>
+                    <li>
+                        <h3>Thread 2</h3>
+                        <p>Subject: Meeting Notes 11/28</p>
+                    </li>
+                    <li>
+                        <h3>Thread 3</h3>
+                        <p>Subject: Project Proposal</p>
+                    </li>
+                    <li>
+                        <h3>Thread 3</h3>
+                        <p>Subject: Business Brainstorm</p>
+                    </li>
+				</ResultsList>
+			</ResultWrap>
 		</Row>
 	);
 };

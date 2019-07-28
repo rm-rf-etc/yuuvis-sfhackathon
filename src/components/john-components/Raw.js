@@ -8,7 +8,7 @@ const Div = styled.div`
 	display: flex;
 	text-align: left;
 	flex-direction: column;
-	padding: 5px;
+	padding: 0 5px;
 	overflow: hidden;
 	position: relative;
 	overflow-y: scroll;
@@ -60,7 +60,6 @@ const RawDoc = () => {
     return data ? (
         <Div id="rawContainer">
             <div className="raw-inner">
-                <h1>Thread</h1>
                 <React.Fragment>
                     {Object.entries(data).map(([id, value]) => (
                         <SingleEmail
