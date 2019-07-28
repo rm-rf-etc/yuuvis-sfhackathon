@@ -10,3 +10,4 @@ window.gun = gun;
 
 export const emailRecords = gun.get(userId).get('threads').map();
 export const searchStringRecord = gun.get(userId).get('searchString');
+export const searchResultsRecord = gun.get(userId).get('searchResults');

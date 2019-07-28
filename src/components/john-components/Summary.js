@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { emailRecords } from '../../store';
+import { emailRecords, searchResultsRecord } from '../../store';
 import { safeId } from '../../helpers';
 
 const Div = styled.div`
@@ -133,10 +133,28 @@ const SummaryList = ({ data }) => (
     </React.Fragment>
 )
 
+
+
 const Summary = () => {
 
     const [data, setData] = React.useState(null);
+    const [search, setSearch] = React.useState(null);
     !data && emailRecords.load((data) => setData(data));
+    !search && data  !== null && searchResultsRecord.on((rdata) => {
+        const results = JSON.parse(rdata);
+        const newData = {};
+        console.log("raw results",rdata);
+        if(data){
+            results.forEach((item)=>{
+                if(data[item]){
+                    newData[item] = data[item]
+                }
+            });
+            setData(newData);
+            console.log("NEW DATA",newData);
+        }
+        setSearch(rdata);
+    });
 
     return data ? (
         <Div>
