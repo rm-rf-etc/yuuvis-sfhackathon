@@ -1849,6 +1849,11 @@ axobject-query@^2.0.2:
   dependencies:
     ast-types-flow "0.0.7"
 
+aylien_textapi@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/aylien_textapi/-/aylien_textapi-0.7.0.tgz#01c9e269207dcd0da0aafaa33e062620ece4c5e3"
+  integrity sha1-AcniaSB9zQ2gqvqjPgYmIOzkxeM=
+
 babel-code-frame@^6.22.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
