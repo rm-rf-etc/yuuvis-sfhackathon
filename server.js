@@ -5,13 +5,16 @@ const Gun = require('gun');
 require('gun/lib/open.js');
 require('gun/lib/load.js');
 require('gun/lib/unset.js');
+require('dotenv').config();
+
+const userId = process.env.REACT_APP_USER_ID;
+console.log('userId', userId);
 
 const yuuvisSearch = axios.create({
   baseURL: 'https://api.yuuvis.io',
   headers: {'Ocp-Apim-Subscription-Key': '07e8d29a9b924834932472703ba32c06'}
 });
 
-const { debounce } = require('lodash');
 // require('@notabug/gun-lmdb').attachToGun(Gun, {
 //   path: path.resolve(__dirname, 'lmdb_database'),
 //   mapSize: 1024 ** 2 // max size of database in bytes
@@ -86,11 +89,11 @@ be any action to speak of on the trading side in South America.  If Gary does
 anything other than trade from ECT on exchange or through swaps that he will 
 have to take into consideration who will provide legal and administrative 
 support and from where.`,
-      notes: {
-          '0': 'Is Mark Taylor aware of Gary\'s plans?',
-          '1': ' Don and a few commercial guys in Brazil, believe that there will \nbe any action to speak of on the trading side in South America',
-          '2': 'take into consideration who will provide legal and administrative \nsupport and from where',
-      },
+    notes: {
+      '0': 'Is Mark Taylor aware of Gary\'s plans?',
+      '1': ' Don and a few commercial guys in Brazil, believe that there will \nbe any action to speak of on the trading side in South America',
+      '2': 'take into consideration who will provide legal and administrative \nsupport and from where',
+    },
   },
   'email/3': {
     highlighted: false,
@@ -107,11 +110,11 @@ communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo
 next week.  I'll be more specific in a day or so.  I'm still having problems 
 tying into the database (this is ridiculous!).  Did you receive my voice 
 mail?  SS`,
-      notes: {
-          '0': 'Gary is going to provide me with a list of OTC products',
-          '1': 'can this be a sub of an offshore entity?',
-          '2': 'I\'m still having problems \ntying into the database (this is ridiculous!)',
-      },
+    notes: {
+      '0': 'Gary is going to provide me with a list of OTC products',
+      '1': 'can this be a sub of an offshore entity?',
+      '2': 'I\'m still having problems \ntying into the database (this is ridiculous!)',
+    },
   },
   'email/4': {
     highlighted: false,
@@ -153,12 +156,10 @@ attachments.forEach(([parent, child]) => {
 });
 
 
-// const searchHandler = async (userId, value) => {
 const searchHandler = async (value) => {
 
-  return console.log(value);
+  console.log(value);
 
-  /*
   const { data } = await yuuvisSearch.post('/dms/objects/search', {
     query: {
       maxItems: 50,
@@ -172,25 +173,23 @@ const searchHandler = async (value) => {
     matches = data.objects.map((match) => match.properties['enaio:objectId'].value);
   }
 
-  if (!matches || !matches.length) {
+  if (matches && matches.length) {
+    gun.get(userId).get('searchResults').put(JSON.stringify(matches))
   }
-  */
 };
 
-gun.get('users').map().get('searchString').on(debounce(searchHandler, 1000, { 'maxWait': 2000 }));
+gun.get(userId).get('searchString').on(searchHandler);
 
-// const getSearchHandler = (userId) => {
-//   debounce(searchHandler, 1000, { 'maxWait': 2000 })
-// }
-// const users = gun.get('users')
-// users.map().once((user, id) => {
-//   users.get(id).get('searchString').on(getSearchHandler(id))
+
+// const users = gun.get('users');
+// users.map().once((user, userId) => {
+//   users.get(userId).get('searchString').on(getSearchHandler(userId));
 // });
 
-// const queryResponseHandler = (data, userId) => {
-//   // const results = data.do_stuff_here();
+const queryResponseHandler = (data, userId) => {
+  // const results = data.do_stuff_here();
 
-//   results.forEach((each) => {
-//     gun.get(userId).get('searchResults').set(each);
-//   });
-// };
+  results.forEach((each) => {
+    gun.get(userId).get('searchResults').set(each);
+  });
+};

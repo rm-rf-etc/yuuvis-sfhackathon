@@ -22,22 +22,22 @@ const SearchBox = styled.div`
 		text-align: right;
 	}
 	.btn{
-        padding: 8px 24px;
-        color: white;
-        font-size: 20px;
-        border: none;
-        width: 100%;
-        max-width: 48%;
-        border-radius: 4px;
-        display: inline-block;
-    }
-    .btn-red{
-        background: #b53942;
-        margin-right: 2%;
-    }
-    .btn-green{
-        background: #50bb31;
-    }
+		padding: 8px 24px;
+		color: white;
+		font-size: 20px;
+		border: none;
+		width: 100%;
+		max-width: 48%;
+		border-radius: 4px;
+		display: inline-block;
+	}
+	.btn-red{
+		background: #b53942;
+		margin-right: 2%;
+	}
+	.btn-green{
+		background: #50bb31;
+	}
 `;
 
 const ResultWrap = styled.div`
@@ -71,39 +71,40 @@ const ResultsList = styled.ul`
 	}
 `;
 
-
 const SearchUI = ({ results = [] }) => {
 
-	const [searchString, setSearch] = React.useState('');
-	React.useEffect(() => () => {
+	const [searchString, setSearch] = React.useState(null);
+	React.useEffect(() => {
 		searchStringRecord.once((str) => setSearch(str));
-	});
-
-	const processedResults = results.reduce((validResults, item) => {
-		if (item && item.value) {
-			validResults.push(
-				<li key={item.value}>{item.value}</li>
-			);
-		}
-		return validResults;
 	}, []);
+
+	// const processedResults = results.reduce((validResults, item) => {
+	// 	if (item && item.value) {
+	// 		validResults.push(
+	// 			<li key={item.value}>{item.value}</li>
+	// 		);
+	// 	}
+	// 	return validResults;
+	// }, []);
 
 	return (
 		<Row>
 
 			<SearchBox>
-                <h1>Compendium</h1>
+				<h1>Compendium</h1>
 				<Input
 					type="text"
-					value={searchString}
+					value={searchString || ''}
 					placeholder="Your search query..."
-					onChange={({ target }) => {
-						searchStringRecord.put(target.value);
-						setSearch(target.value);
-					}}
+					onChange={({ target }) => setSearch(target.value)}
 				/>
 				<div className="btn-wrapper">
-                    <button className="btn btn-green">Search</button>
+					<button
+						className="btn btn-green"
+						onClick={() => searchStringRecord.put(searchString)}
+					>
+						Search
+					</button>
 				</div>
 			</SearchBox>
 			<ResultWrap>
@@ -113,18 +114,18 @@ const SearchUI = ({ results = [] }) => {
 						<h3>Thread 1</h3>
 						<p>Subject: LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST</p>
 					</li>
-                    <li>
-                        <h3>Thread 2</h3>
-                        <p>Subject: Meeting Notes 11/28</p>
-                    </li>
-                    <li>
-                        <h3>Thread 3</h3>
-                        <p>Subject: Project Proposal</p>
-                    </li>
-                    <li>
-                        <h3>Thread 3</h3>
-                        <p>Subject: Business Brainstorm</p>
-                    </li>
+					<li>
+						<h3>Thread 2</h3>
+						<p>Subject: Meeting Notes 11/28</p>
+					</li>
+					<li>
+						<h3>Thread 3</h3>
+						<p>Subject: Project Proposal</p>
+					</li>
+					<li>
+						<h3>Thread 3</h3>
+						<p>Subject: Business Brainstorm</p>
+					</li>
 				</ResultsList>
 			</ResultWrap>
 		</Row>
