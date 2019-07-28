@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aylien_textapi": "^0.7.0",
     "gun": "^0.2019.712",
     "lodash": "^4.17.15",
     "react": "^16.8.6",
@@ -11,7 +12,8 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
     "redux-logic": "^2.1.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
