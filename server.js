@@ -64,9 +64,9 @@ attachments.forEach(([parent, child]) => {
   gun.path(parent).set(gun.get(child));
 });
 
-const searchHandler = debounce((value) => {
-  console.log(value);
-}, 500, { 'maxWait': 1000 });
+const searchHandler = (
+  debounce((value) => console.log(value), 500, { 'maxWait': 1000 })
+);
 
 gun.path('user/1.searchString').on(searchHandler);
 
