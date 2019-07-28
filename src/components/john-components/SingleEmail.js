@@ -110,11 +110,11 @@ const SingleEmail = (props) => {
         setHighlightedText('');
     }
 
-    const {id, entry} = props;
+    const {id, entry, index} = props;
     const { from: _from, subject, body} = entry;
 
     return (
-        <Email className={id === "email_1" ? "active" : ""} id={id} key={id} onMouseUp={()=>showAddNote()}>
+        <Email className={index === 0 ? "active" : ""} id={id} key={id} onMouseUp={()=>showAddNote()}>
             <div className="email-header">
                 <p>{_from}@email.com</p>
                 <p>to Me</p>

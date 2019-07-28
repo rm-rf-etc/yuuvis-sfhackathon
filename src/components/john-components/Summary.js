@@ -88,7 +88,7 @@ const scrollToEmail  = (emailID) => {
 }
 
 const SummaryNote = ({ parentId, notes, groupId, index }) => (
-    <li className={parentId === "email_1" ? "activeSum" :  ""} id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
+    <li className={index === 0 ? "activeSum" :  ""} id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
         {Object.entries(notes).map(([noteId, note]) => {
             const sumId = `sum${safeId(noteId  + parentId)}`;
             return (
@@ -107,7 +107,8 @@ const SummaryNote = ({ parentId, notes, groupId, index }) => (
 
 const SummaryList = ({ data }) => (
     <React.Fragment>
-        {Object.entries(data).map(([_id, entry]) => {
+        {Object.entries(data).map(([_id, entry], index) => {
+            console.log(index);
             const id = safeId(_id);
             const groupId = `sumGroup${id}`;
 
@@ -116,6 +117,7 @@ const SummaryList = ({ data }) => (
                     <SummaryNote
                         key={groupId}
                         parentId={id}
+                        index={index}
                         notes={entry.notes}
                         groupId={groupId}
                         subject={entry.subject}
@@ -140,22 +142,22 @@ const Summary = () => {
     const [data, setData] = React.useState(null);
     const [search, setSearch] = React.useState(null);
     !data && emailRecords.load((data) => setData(data));
-    !search && data  !== null && searchResultsRecord.on((rdata) => {
+    !search && data && searchResultsRecord.on((rdata) => {
         const results = JSON.parse(rdata);
         const newData = {};
-        console.log("raw results",rdata);
+
         if(data){
             results.forEach((item)=>{
                 if(data[item]){
                     newData[item] = data[item]
                 }
             });
+            console.log('New data', newData);
             setData(newData);
-            console.log("NEW DATA",newData);
         }
         setSearch(rdata);
     });
-
+    console.log(data === null);
     return data ? (
         <Div>
             <ul>

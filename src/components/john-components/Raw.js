@@ -44,9 +44,10 @@ const RawDoc = () => {
         <Div id="rawContainer">
             <div className="raw-inner">
                 <React.Fragment>
-                    {Object.entries(data).map(([id, value]) => (
+                    {Object.entries(data).map(([id, value], index) => (
                         <SingleEmail
                             key={safeId(id)}
+                            index={index}
                             id={safeId(id)}
                             entry={value}
                         />

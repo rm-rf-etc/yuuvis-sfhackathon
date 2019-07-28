@@ -159,7 +159,7 @@ const searchHandler = async (value) => {
   const { data } = await yuuvisSearch.post('/dms/objects/search', {
     query: {
       maxItems: 50,
-      statement: `SELECT * FROM enaio:object WHERE CONTAINS('*${value}*')`,
+      statement: value.length < 1 ? `SELECT * FROM enaio:object` : `SELECT * FROM enaio:object WHERE CONTAINS('*${value}*')`,
       skipCount: 0,
     },
   });
