@@ -93,20 +93,11 @@ support and from where.`,
     from: 'user/1',
     to: 'user/2',
     subject: 'Gary\'s OTC trading',
-      body: `Gary is going to provide me with a list of OTC products for priority 
-trading.  He has been in discussions with tax and structuring in Houston for 
-the S. Cone.  The group has considered (i) trading onshore, (ii) trading as a 
-sub of Elektro (and can this be a sub of an offshore entity?) and (iii) 
-trading offshore.  They have studied the CC5 account requirements and have 
-had conversations wtih JP Morgan and BofA.  There appears to be little 
-communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo 
-next week.  I'll be more specific in a day or so.  I'm still having problems 
-tying into the database (this is ridiculous!).  Did you receive my voice 
-mail?  SS`,
+      body: `Gary is going to provide me with a list of OTC products for priority trading.  He has been in discussions with tax and structuring in Houston for the S. Cone.  The group has considered (i) trading onshore, (ii) trading as a sub of Elektro (and can this be a sub of an offshore entity?) and (iii) trading offshore.  They have studied the CC5 account requirements and have had conversations wtih JP Morgan and BofA.  There appears to be little communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo next week.  I'll be more specific in a day or so.  I'm still having problems tying into the database (this is ridiculous!).  Did you receive my voice mail?  SS`,
       notes: {
-          '0': 'Gary is going to provide me with a list of OTC products',
-          '1': 'can this be a sub of an offshore entity?',
-          '2': 'I\'m still having problems \ntying into the database (this is ridiculous!)',
+          '0': 'Gary is going to provide me with a list of OTC products for priority trading.',
+          '1': 'The group has considered (i) trading onshore, (ii) trading as a sub of Elektro (and can this be a sub of an offshore entity?)',
+          '2': 'and (iii) trading offshore.',
       },
   },
   'email/4': {
