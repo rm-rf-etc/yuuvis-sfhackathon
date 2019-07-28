@@ -109,7 +109,12 @@ support and from where.`,
     from: 'user/1',
     to: 'user/2',
     subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
-    body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    body: `Received a call from Perez lawyer, Javier Casal, saying that they have been occupying most of their time in another priority Project and this is why they are delayed with their answer on the MSA proposal. He said that they have scheduled an internal meeting for next Monday, Aug. 9 to tackle this MSA with Enron Corp. and they will contact us asap with their comments. I told Perez that it was not worth while to delay it further than one more month. Casal answered that he took resposability for taking care of this matter.`,
+    notes: {
+        '0': 'Received a call from Perez lawyer, Javier Casal, saying that they have been occupying most of their time in another priority Project and this is why they are delayed with their answer on the MSA proposal.',
+        '1': 'He said that they have scheduled an internal meeting for next Monday, Aug. 9 to tackle this MSA with Enron Corp. and they will contact us asap with their comments.',
+        '2': 'I told Perez that it was not worth while to delay it further than one more month.',
+    },
   },
   'email/5': {
     highlighted: false,
