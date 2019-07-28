@@ -81,7 +81,7 @@ leave at present.`,
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Gary\'s OTC trading',
+    subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
     body: `Is Mark Taylor aware of Gary's plans?  I know from my conversations with Mark 
 about support for trading in South America that very few people in Enron, 
 other than Don and a few commercial guys in Brazil, believe that there will 
@@ -99,35 +99,31 @@ support and from where.`,
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Gary\'s OTC trading',
-      body: `Gary is going to provide me with a list of OTC products for priority 
-trading.  He has been in discussions with tax and structuring in Houston for 
-the S. Cone.  The group has considered (i) trading onshore, (ii) trading as a 
-sub of Elektro (and can this be a sub of an offshore entity?) and (iii) 
-trading offshore.  They have studied the CC5 account requirements and have 
-had conversations wtih JP Morgan and BofA.  There appears to be little 
-communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo 
-next week.  I'll be more specific in a day or so.  I'm still having problems 
-tying into the database (this is ridiculous!).  Did you receive my voice 
-mail?  SS`,
+    subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
+    body: `Gary is going to provide me with a list of OTC products for priority trading.  He has been in discussions with tax and structuring in Houston for the S. Cone.  The group has considered (i) trading onshore, (ii) trading as a sub of Elektro (and can this be a sub of an offshore entity?) and (iii) trading offshore.  They have studied the CC5 account requirements and have had conversations wtih JP Morgan and BofA.  There appears to be little communication with anyone in Brazil and Joe Kishkill is going to Sao Paulo next week.  I'll be more specific in a day or so.  I'm still having problems tying into the database (this is ridiculous!).  Did you receive my voice mail?  SS`,
     notes: {
-      '0': 'Gary is going to provide me with a list of OTC products',
-      '1': 'can this be a sub of an offshore entity?',
-      '2': 'I\'m still having problems \ntying into the database (this is ridiculous!)',
+      '0': 'Gary is going to provide me with a list of OTC products for priority trading.',
+      '1': 'The group has considered (i) trading onshore, (ii) trading as a sub of Elektro (and can this be a sub of an offshore entity?)',
+      '2': 'and (iii) trading offshore.',
     },
   },
   'email/4': {
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Please approve my vacation request',
-    body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
+    body: `Received a call from Perez lawyer, Javier Casal, saying that they have been occupying most of their time in another priority Project and this is why they are delayed with their answer on the MSA proposal. He said that they have scheduled an internal meeting for next Monday, Aug. 9 to tackle this MSA with Enron Corp. and they will contact us asap with their comments. I told Perez that it was not worth while to delay it further than one more month. Casal answered that he took resposability for taking care of this matter.`,
+    notes: {
+        '0': 'Received a call from Perez lawyer, Javier Casal, saying that they have been occupying most of their time in another priority Project and this is why they are delayed with their answer on the MSA proposal.',
+        '1': 'He said that they have scheduled an internal meeting for next Monday, Aug. 9 to tackle this MSA with Enron Corp. and they will contact us asap with their comments.',
+        '2': 'I told Perez that it was not worth while to delay it further than one more month.',
+    },
   },
   'email/5': {
     highlighted: false,
     from: 'user/1',
     to: 'user/2',
-    subject: 'Please approve my vacation request',
+    subject: 'LEGAL SIGN OFF MEETING - MONDAY, 9TH AUGUST',
     body: `EMAIL 5 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
 };

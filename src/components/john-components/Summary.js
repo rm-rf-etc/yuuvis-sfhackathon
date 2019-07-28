@@ -16,19 +16,30 @@ const Div = styled.div`
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;
+	    perspective: 1000px;
 	    li{
 	        margin-bottom: 5px;
 	        padding: 15px;
 	        background: #eeeeee;
 	        transition: all 100ms ease-in-out;
+	        transform: scale(.9);
+	        transform-origin: left;
+	        position: relative;
 	        &.activeSum{
 	            background: white;
 	            opacity: 1;
+	            transform: scale(1);
+	            box-shadow: 0px 2px 37px -30px black;
+	            z-index: 99;
+	            p{
+	                pointer-events: all;
+	            }
 	        }
 	        p{
 	            padding: 5px;
 	            margin: 0;
 	            border-radius: 2px;
+	            pointer-events: none;
 	            &.activeSingleSum{
 	                color: #de5547;
 	                text-decoration: underline;

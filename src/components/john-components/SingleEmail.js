@@ -7,7 +7,9 @@ const Email = styled.div`
     margin-bottom: 5px;
     border-radius: 1px;
     transition: all 300ms ease-in-out;
-    
+    p::selection {
+        background: #b9f4ed;
+    }
     &.active{
         background: white;
 	    opacity: 1;
