@@ -48,7 +48,7 @@ const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); ret
     rawDoc.innerHTML  = rawDoc.innerHTML.replace(needle, '<span class="highlight">'+needle+'</span>');
 }
 
-const removeStringHighlight = (sumID, emailID) => { //console.log(sumID, emailID); return;
+const removeStringHighlight = (sumID, emailID) => {
     const singleSum = document.getElementById('sum' +sumID);
     const activeSingleSum = document.getElementsByClassName('activeSingleSum')[0];
     const needle = singleSum.innerHTML;
@@ -60,7 +60,7 @@ const removeStringHighlight = (sumID, emailID) => { //console.log(sumID, emailID
     rawDoc.innerHTML  = rawDoc.innerHTML.replace('<span class="highlight">'+needle+'</span>', needle);
 }
 
-const scrollToEmail  = (emailID) => { //console.log(emailID); return;
+const scrollToEmail  = (emailID) => {
     const singleEmail = document.getElementById(emailID);
     const singleSummaryGroup = document.getElementById('sumGroup'+emailID);
     const activeEmail = document.getElementsByClassName('active')[0];
@@ -100,8 +100,6 @@ const SummaryList = ({ data }) => (
             const id = safeId(_id);
             const groupId = `sumGroup${id}`;
 
-            console.log('PARENT ID', id);
-
             if (entry.notes && entry.notes[0]) {
                 return (
                     <SummaryNote
@@ -128,8 +126,6 @@ const Summary = () => {
 
     const [data, setData] = React.useState(null);
     !data && emailRecords.load((data) => setData(data));
-
-    console.log('SUMMARY DATA', data);
 
     return data ? (
         <Div>
