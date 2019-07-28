@@ -1,38 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-
-const data = [
-    {
-        from: 'user/1',
-        to: 'user/2',
-        subject: 'Please approve my vacation request',
-        body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summaries: [`Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`],
-        notes: ['at an alarming rate', 'The consequences are proving to be profound', 'aquifers dry up'],
-    },
-    {
-        from: 'user/1',
-        to: 'user/2',
-        subject: 'Please approve my vacation request',
-        body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summaries: [`Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`],
-    },
-    {
-        from: 'user/1',
-        to: 'user/2',
-        subject: 'Please approve my vacation request',
-        body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summaries: [`The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.`],
-    },
-    {
-        from: 'user/1',
-        to: 'user/2',
-        subject: 'Please approve my vacation request',
-        body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summaries: [`By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`],
-    },
-];
+import { gun, emailRecords } from '../../store';
+import { safeId } from '../../helpers';
 
 const Div = styled.div`
 	display: flex;
@@ -66,20 +35,20 @@ const Div = styled.div`
 `;
 
 
-const highlightString = (sumID, emailID) => {
+const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); return;
     const singleSum = document.getElementById('sum' +sumID);
     const needle = singleSum.innerHTML;
-    const rawDoc = document.getElementById("email"+emailID);
+    const rawDoc = document.getElementById(emailID);
 
     singleSum.classList.add('activeSingleSum');
     rawDoc.innerHTML  = rawDoc.innerHTML.replace(needle, '<span class="highlight">'+needle+'</span>');
 }
 
-const removeStringHighlight = (sumID,emailID) => {
+const removeStringHighlight = (sumID, emailID) => { //console.log(sumID, emailID); return;
     const singleSum = document.getElementById('sum' +sumID);
     const activeSingleSum = document.getElementsByClassName('activeSingleSum')[0];
     const needle = singleSum.innerHTML;
-    const rawDoc = document.getElementById("email"+emailID);
+    const rawDoc = document.getElementById(emailID);
     if(activeSingleSum){
         activeSingleSum.classList.remove('activeSingleSum');
     }
@@ -87,8 +56,8 @@ const removeStringHighlight = (sumID,emailID) => {
     rawDoc.innerHTML  = rawDoc.innerHTML.replace('<span class="highlight">'+needle+'</span>', needle);
 }
 
-const scrollToEmail  = (emailID) => {
-    const singleEmail = document.getElementById('email' + emailID);
+const scrollToEmail  = (emailID) => { //console.log(emailID); return;
+    const singleEmail = document.getElementById(emailID);
     const singleSummaryGroup = document.getElementById('sumGroup'+emailID);
     const activeEmail = document.getElementsByClassName('active')[0];
     const activeSum = document.getElementsByClassName('activeSum')[0];
@@ -105,16 +74,14 @@ const scrollToEmail  = (emailID) => {
 
 const SummaryNote = ({ parentId, notes, groupId }) => (
     <li id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
-        {notes.map((note, _id) => {
-            const noteId = _id+1;
-            const sumId = `sum${noteId}`;
-
+        {Object.entries(notes).map(([noteId, note]) => {
+            const sumId = `sum${safeId(noteId)}`;
             return (
                 <p
                     id={sumId}
                     key={sumId}
-                    onMouseEnter={() => highlightString(noteId, "1")}
-                    onMouseOut={() => removeStringHighlight(noteId,"1")}
+                    onMouseEnter={() => highlightString(noteId, parentId)}
+                    onMouseOut={() => removeStringHighlight(noteId, parentId)}
                 >
                     {note}
                 </p>
@@ -125,11 +92,13 @@ const SummaryNote = ({ parentId, notes, groupId }) => (
 
 const SummaryList = ({ data }) => (
     <React.Fragment>
-        {data.map((entry, _id) => {
-            const id = _id+1;
+        {Object.entries(data).map(([_id, entry]) => {
+            const id = safeId(_id);
             const groupId = `sumGroup${id}`;
 
-            if (entry.notes && entry.notes.length) {
+            console.log('PARENT ID', id);
+
+            if (entry.notes && entry.notes[0]) {
                 return (
                     <SummaryNote
                         key={groupId}
@@ -142,8 +111,8 @@ const SummaryList = ({ data }) => (
             }
             return (
                 <li id={groupId} key={groupId} onClick={()=>scrollToEmail(id)}>
-                    {entry.summaries.map((summary, sumId) => (
-                        <p key={sumId} id="sentence2">{summary}</p>
+                    {Object.entries(entry.summaries).map(([sumId, summary]) => (
+                        <p key={safeId(sumId)} id="sentence2">{summary.textValue}</p>
                     ))}
                 </li>
             );
@@ -152,18 +121,20 @@ const SummaryList = ({ data }) => (
 )
 
 const Summary = () => {
-    return (
+
+    const [data, setData] = React.useState(null);
+    !data && emailRecords.load((data) => setData(data));
+
+    console.log('SUMMARY DATA', data);
+
+    return data ? (
         <Div>
             <h1>Summaries</h1>
             <ul>
                 <SummaryList data={data} />
             </ul>
         </Div>
-    );
+    ) : null;
 };
 
-function mapStateToProps(state){
-    return state;
-}
-
-export default connect(mapStateToProps)(Summary);
+export default Summary;

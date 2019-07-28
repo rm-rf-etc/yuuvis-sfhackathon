@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 const Email = styled.div`
     padding: 15px;
@@ -114,15 +113,15 @@ const SingleEmail = (props) => {
     const { from: _from, subject, body} = entry;
 
     return (
-        <Email id={`email${id}`} key={id+1} onMouseUp={()=>showAddNote()}>
+        <Email id={id} key={id} onMouseUp={()=>showAddNote()}>
             <div className="email-header">
                 <p>{_from}@email.com</p>
                 <p>to Me</p>
                 <p><span>Subject:</span> {subject}</p>
             </div>
-            <p id="rawDoc"
-
-            >{body}</p>
+            <p id="rawDoc">
+                {body}
+            </p>
             {highlighted && (
                 <EnterNote text={highlightedText} hideAddNote={hideAddNote}/>
             )}
@@ -130,8 +129,4 @@ const SingleEmail = (props) => {
     )
 }
 
-function mapStateToProps(state){
-    return state;
-}
-
-export default connect(mapStateToProps)(SingleEmail);
+export default SingleEmail;

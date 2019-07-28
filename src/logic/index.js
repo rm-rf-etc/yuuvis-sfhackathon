@@ -1,16 +1,10 @@
 import { createLogic } from 'redux-logic';
-import Gun from 'gun';
-import 'gun/lib/open.js';
-import 'gun/lib/load.js';
-import 'gun/lib/then.js';
+import { gun } from '../store';
 import { omit } from 'lodash';
-import { userDataLoaded, threadsLoaded } from '../actions';
+import { userDataLoaded, threadsLoaded, emailChanged } from '../actions';
 import actionTypes from '../actions/types';
 
 const userId = process.env.REACT_APP_USER_ID;
-
-const gun = new Gun(['http://localhost:7700/gun']);
-window.gun = gun;
 
 export const onStartup = createLogic({
 
@@ -20,11 +14,6 @@ export const onStartup = createLogic({
 
 		gun.get(userId).get('searchString').once((value) => {
 			dispatch(userDataLoaded({ searchString: value }));
-		});
-		gun.get(userId).get('threads').once((value) => {
-			console.log(`Thread ID's`);
-			console.log(value);
-			// dispatch(userDataLoaded({ threads: value }));
 		});
 
 		const rawThreads = await gun.get(userId).get('threads').load().then();

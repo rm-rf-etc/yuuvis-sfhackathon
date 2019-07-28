@@ -33,21 +33,27 @@ const seeds = {
     searchResults: {},
   },
   'summary/1': {
+    highlighted: false,
     textValue: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
   },
   'summary/2': {
+    highlighted: false,
     textValue: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
   },
   'summary/3': {
+    highlighted: false,
     textValue: `The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.`,
   },
   'summary/4': {
+    highlighted: false,
     textValue: `By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`,
   },
   'summary/5': {
+    highlighted: false,
     textValue: `By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`,
   },
   'email/1': {
+    highlighted: false,
     from: 'user/1',
     to: 'user/2',
     subject: 'Please approve my vacation request',
@@ -59,24 +65,28 @@ const seeds = {
     },
   },
   'email/2': {
+    highlighted: false,
     from: 'user/1',
     to: 'user/2',
     subject: 'Please approve my vacation request',
     body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/3': {
+    highlighted: false,
     from: 'user/1',
     to: 'user/2',
     subject: 'Please approve my vacation request',
     body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/4': {
+    highlighted: false,
     from: 'user/1',
     to: 'user/2',
     subject: 'Please approve my vacation request',
     body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/5': {
+    highlighted: false,
     from: 'user/1',
     to: 'user/2',
     subject: 'Please approve my vacation request',
