@@ -21,30 +21,35 @@ const gun = Gun({
 
 server.listen(7700, () => console.info('Server listening on localhost:7700/gun'));
 
+
 const seeds = {
   'user/1': {
     name: 'Janis Joplin',
     searchString: '',
   },
   'email/1': {
-    summary: 'lorem ipsum',
-    raw: 'lorem ipsum delor sit amit',
+    from: 'User1',
+    to: 'User2',
+    subject: 'Please approve my vacation request',
+    body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/2': {
-    summary: 'lorem ipsum',
-    raw: 'lorem ipsum delor sit amit',
+    from: 'User1',
+    to: 'User2',
+    subject: 'Please approve my vacation request',
+    body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/3': {
-    summary: 'lorem ipsum',
-    raw: 'lorem ipsum delor sit amit',
+    from: 'User1',
+    to: 'User2',
+    subject: 'Please approve my vacation request',
+    body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
   'email/4': {
-    summary: 'lorem ipsum',
-    raw: 'lorem ipsum delor sit amit',
-  },
-  'email/5': {
-    summary: 'lorem ipsum',
-    raw: 'lorem ipsum delor sit amit',
+    from: 'User1',
+    to: 'User2',
+    subject: 'Please approve my vacation request',
+    body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
   },
 };
 const attachments = [
