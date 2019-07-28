@@ -1,20 +1,27 @@
 <schema xmlns="http://optimal-systems.org/ns/dmscloud/schema/v4.0/" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://optimal-systems.org/ns/dmscloud/schema/v4.0/ dmsCloud-schema.xsd">
-        
+
 	<propertyIntegerDefinition>
-		<id>thread</id>
+		<id>user</id>
 		<propertyType>integer</propertyType>
-		<cardinality>single</cardinality>
+		<cardinality>multi</cardinality>
 		<required>true</required>
 	</propertyIntegerDefinition>
 
-	<propertyIntegerDefinition>
-		<id>emailId</id>
-		<propertyType>integer</propertyType>
+	<propertyStringDefinition>
+		<id>threadID</id>
+		<propertyType>string</propertyType>
 		<cardinality>single</cardinality>
 		<required>true</required>
-	</propertyIntegerDefinition>
+	</propertyStringDefinition>
+
+	<propertyStringDefinition>
+		<id>emailID</id>
+		<propertyType>string</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyStringDefinition>
 
 	<propertyIntegerDefinition>
 		<id>order</id>
@@ -23,25 +30,12 @@
 		<required>true</required>
 	</propertyIntegerDefinition>
 
-	<propertyStringDefinition>
-		<id>rawText</id>
-		<propertyType>string</propertyType>
-		<cardinality>single</cardinality>
-		<required>true</required>
-	</propertyStringDefinition>
-
-	<propertyStringDefinition>
-		<id>summaryText</id>
-		<propertyType>string</propertyType>
-		<cardinality>single</cardinality>
-		<required>true</required>
-	</propertyStringDefinition>
-
 	<typeDocumentDefinition>
 		<id>email</id>
 		<baseId>enaio:document</baseId>
-		<propertyReference>rawText</propertyReference>
-		<propertyReference>thread</propertyReference>
+		<propertyReference>user</propertyReference>
+		<propertyReference>threadID</propertyReference>
+		<propertyReference>emailID</propertyReference>
 		<propertyReference>order</propertyReference>
 		<contentStreamAllowed>required</contentStreamAllowed>
 	</typeDocumentDefinition>
@@ -49,8 +43,9 @@
 	<typeDocumentDefinition>
 		<id>summary</id>
 		<baseId>enaio:document</baseId>
-		<propertyReference>summaryText</propertyReference>
-		<propertyReference>thread</propertyReference>
+		<propertyReference>user</propertyReference>
+		<propertyReference>threadID</propertyReference>
+		<propertyReference>emailID</propertyReference>
 		<propertyReference>order</propertyReference>
 		<contentStreamAllowed>required</contentStreamAllowed>
 	</typeDocumentDefinition>

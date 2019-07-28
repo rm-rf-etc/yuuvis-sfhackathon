@@ -14,3 +14,8 @@ export const userDataLoaded = (payload) => ({
 	type: actionTypes.USER_DATA_LOADED,
 	payload,
 });
+
+export const emailChanged = (payload) => ({
+	type: actionTypes.EMAIL_DATA_LOADED,
+	payload,
+});
