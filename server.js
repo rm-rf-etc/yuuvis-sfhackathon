@@ -154,38 +154,56 @@ attachments.forEach(([parent, child]) => {
 
 const searchHandler = async (value) => {
 
-  console.log(value);
+  console.log('NEW QUERY STRING', value);
 
   const { data } = await yuuvisSearch.post('/dms/objects/search', {
     query: {
       maxItems: 50,
-      statement: `SELECT * FROM enaio:object WHERE CONTAINS('${value}')`,
+      statement: `SELECT * FROM enaio:object WHERE CONTAINS('*${value}*')`,
       skipCount: 0,
     },
   });
+
+  if (data) {
+    console.log('DATA RESULT:', data);
+  }
 
   let matches = null;
   if (data && data.objects) {
     matches = data.objects.map((match) => match.properties['enaio:objectId'].value);
   }
 
-  if (matches && matches.length) {
-    gun.get(userId).get('searchResults').put(JSON.stringify(matches))
+  if (!matches || matches.length < 1) {
+    console.log('NO MATCHES FOUND');
+    return;
   }
+
+  const processedMatches = [];
+  console.log('MATCHES FOUND', matches);
+  for (const documentId of matches) {
+
+    console.log('REQUEST DOCUMENT ID:', documentId);
+
+    const result = await axios.get(`https://api.yuuvis.io/dms/objects/${documentId}/contents/file`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': '07e8d29a9b924834932472703ba32c06',
+      }
+    });
+
+    console.log('DOCUMENT RESULT.DATA', result.data);
+
+    if (result && result.data) {
+
+      const { data } = result;
+
+      if (data.object_id) { processedMatches.push(data.object_id); }
+    }
+  }
+
+  console.log('PROCESSED MATCHES', processedMatches);
+  console.log('PROCESSED MATCHES JSON STRING', JSON.stringify(processedMatches));
+  gun.get(userId).get('searchResults').put(JSON.stringify(processedMatches));
 };
 
 gun.get(userId).get('searchString').on(searchHandler);
-
-
-// const users = gun.get('users');
-// users.map().once((user, userId) => {
-//   users.get(userId).get('searchString').on(getSearchHandler(userId));
-// });
-
-const queryResponseHandler = (data, userId) => {
-  // const results = data.do_stuff_here();
-
-  results.forEach((each) => {
-    gun.get(userId).get('searchResults').set(each);
-  });
-};
