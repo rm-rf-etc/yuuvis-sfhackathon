@@ -5,6 +5,9 @@ require('gun/lib/path.js');
 require('gun/lib/open.js');
 require('gun/lib/load.js');
 require('gun/lib/unset.js');
+
+var AYLIENTextAPI = require('aylien_textapi');
+
 const { debounce } = require('lodash');
 // require('@notabug/gun-lmdb').attachToGun(Gun, {
 //   path: path.resolve(__dirname, 'lmdb_database'),
@@ -66,3 +69,27 @@ const searchHandler = debounce((value) => {
 }, 500, { 'maxWait': 1000 });
 
 gun.path('user/1.searchString').on(searchHandler);
+
+
+var textapi = new AYLIENTextAPI({
+  application_id: "8e9d825d",
+  application_key: "d515b564aa74cd8ccfeb10ffb2e8a99c"
+});
+
+async function summarize(email) {
+    let summaries = email;
+    textapi.summarize({
+	'text': email,
+	'title': 'placeholder'
+    }, function(error, response) {
+	if (error === null) {
+	    console.log(response);
+	    if (response.sentences.length === 0) {
+		response.sentences.push(text);
+	    }
+	    summaries = response.sentences;
+	}
+    });
+    return summaries;
+}
+
