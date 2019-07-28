@@ -1,6 +1,5 @@
 import { createLogic } from 'redux-logic';
 import Gun from 'gun';
-import 'gun/lib/path.js';
 import 'gun/lib/open.js';
 import 'gun/lib/load.js';
 import 'gun/lib/then.js';
@@ -19,16 +18,16 @@ export const onStartup = createLogic({
 
 	async process(_, dispatch, done) {
 
-		gun.path(`${userId}.searchString`).once((value) => {
+		gun.get(userId).get('searchString').once((value) => {
 			dispatch(userDataLoaded({ searchString: value }));
 		});
-		gun.path(`${userId}.threads`).once((value) => {
+		gun.get(userId).get('threads').once((value) => {
 			console.log(`Thread ID's`);
 			console.log(value);
 			// dispatch(userDataLoaded({ threads: value }));
 		});
 
-		const rawThreads = await gun.path(`${userId}.threads`).load().then();
+		const rawThreads = await gun.get(userId).get('threads').load().then();
 		const threadsList = Object.keys(omit(rawThreads, '_'));
 
 		if (!threadsList) {
@@ -50,7 +49,7 @@ export const searchStateLogic = createLogic({
 
 		const { searchString } = action.payload;
 
-		await gun.path('user/1.searchString').put(searchString);
+		await gun.get('user/1').get('searchString').put(searchString);
 
 		return done();
 	}
