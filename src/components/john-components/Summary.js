@@ -4,33 +4,33 @@ import { connect } from 'react-redux';
 
 const data = [
     {
-        from: 'User1',
-        to: 'User2',
+        from: 'user/1',
+        to: 'user/2',
         subject: 'Please approve my vacation request',
         body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summaries: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
+        summaries: [`Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`],
         notes: ['at an alarming rate', 'The consequences are proving to be profound', 'aquifers dry up'],
     },
     {
-        from: 'User1',
-        to: 'User2',
+        from: 'user/1',
+        to: 'user/2',
         subject: 'Please approve my vacation request',
         body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summary: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
+        summaries: [`Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`],
     },
     {
-        from: 'User1',
-        to: 'User2',
+        from: 'user/1',
+        to: 'user/2',
         subject: 'Please approve my vacation request',
         body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summary: `The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.`,
+        summaries: [`The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.`],
     },
     {
-        from: 'User1',
-        to: 'User2',
+        from: 'user/1',
+        to: 'user/2',
         subject: 'Please approve my vacation request',
         body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summary: `By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`,
+        summaries: [`By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`],
     },
 ];
 
@@ -134,7 +134,9 @@ const SummaryList = ({ data }) => (
             }
             return (
                 <li id={groupId} key={groupId} onClick={()=>scrollToEmail(id)}>
-                    <p id="sentence2">{entry.summary}</p>
+                    {entry.summaries.map((summary) => (
+                        <p id="sentence2">{summary}</p>
+                    ))}
                 </li>
             );
         })}
