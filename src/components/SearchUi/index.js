@@ -43,7 +43,9 @@ const SearchBox = styled.div`
 const ResultWrap = styled.div`
 	h2{
 		font-size: 20px;
-		text-align: center;
+		text-align: left;
+		padding: 0 10px;
+		font-weight: normal;
 	}
 `;
 
@@ -107,7 +109,7 @@ const SearchUI = ({ results = [] }) => {
 				</div>
 			</SearchBox>
 			<ResultWrap>
-				<h2>Results:</h2>
+				<h2>Results</h2>
 				<ResultsList>
 					<li className="activeThread">
 						<h3>Thread 1</h3>
