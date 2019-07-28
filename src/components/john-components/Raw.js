@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import SingleEmail from './SingleEmail'
@@ -41,6 +41,7 @@ const Div = styled.div`
 	flex-direction: column;
 	padding: 5px;
 	overflow: hidden;
+	position: relative;
 	overflow-y: scroll;
 	.raw-inner{
 	    padding-bottom: 400px;
@@ -86,12 +87,12 @@ const RawDoc = () => {
     return (
         <Div id="rawContainer">
             <div className="raw-inner">
-                <h1 >Thread</h1>
                 <React.Fragment>
                     {data.map((entry, id) => {
                         return(
                             <SingleEmail
                                 id={id + 1}
+                                key={id}
                                 entry={entry}
                             />)
                     })}

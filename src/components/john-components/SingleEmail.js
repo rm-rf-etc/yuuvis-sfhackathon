@@ -97,7 +97,6 @@ const SingleEmail = (props) => {
     const showAddNote = () => {
         const selection = window.getSelection();
         const highlightedText = selection.toString();
-        console.log(selection.anchorNode.parentElement);
         if(highlightedText.length > 0){
             setHighlighted(true);
             setHighlightedText(highlightedText);

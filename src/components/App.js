@@ -22,11 +22,15 @@ const Container = styled.div`
 	.col{
 	    display: flex;
 	    flex: 1;
+	    flex-direction: column;
 	    &:nth-child(1){
 	        flex: .5;
 	    }
 	    &:nth-child(2){
 	        flex: .5;
+	    }
+	    h1{
+	      padding: 0 10px;
 	    }
 	}
 `;
@@ -40,12 +44,12 @@ const App = () => {
           <SearchUi />
         </div>
         <div className="col">
-          {/*Summary display area*/}
+            <h1>Summaries</h1>
           <Summary/>
         </div>
         <div className="col">
-          {/*Raw Document display area*/}
-          <Raw/>
+            <h1>Thread</h1>
+            <Raw/>
         </div>
       </Container>
     </Page>

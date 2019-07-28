@@ -154,7 +154,6 @@ const SummaryList = ({ data }) => (
 const Summary = () => {
     return (
         <Div>
-            <h1>Summaries</h1>
             <ul>
                 <SummaryList data={data} />
             </ul>
