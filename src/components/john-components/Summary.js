@@ -5,26 +5,41 @@ import { safeId } from '../../helpers';
 
 const Div = styled.div`
 	display: flex;
+	flex: 1;
 	text-align: left;
 	flex-direction: column;
-	padding: 10px;
+	padding: 0 10px;
+	overflow: hidden;
+	position: relative;
+	overflow-y: scroll;
 	ul{
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;
+	    perspective: 1000px;
 	    li{
 	        margin-bottom: 5px;
 	        padding: 15px;
 	        background: #eeeeee;
 	        transition: all 100ms ease-in-out;
+	        transform: scale(.9);
+	        transform-origin: left;
+	        position: relative;
 	        &.activeSum{
 	            background: white;
 	            opacity: 1;
+	            transform: scale(1);
+	            box-shadow: 0px 2px 37px -30px black;
+	            z-index: 99;
+	            p{
+	                pointer-events: all;
+	            }
 	        }
 	        p{
 	            padding: 5px;
 	            margin: 0;
 	            border-radius: 2px;
+	            pointer-events: none;
 	            &.activeSingleSum{
 	                color: #de5547;
 	                text-decoration: underline;
@@ -35,8 +50,8 @@ const Div = styled.div`
 `;
 
 
-const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); return;
-    const singleSum = document.getElementById('sum' +sumID);
+const highlightString = (sumID, emailID) => {
+    const singleSum = document.getElementById('sum' + sumID);
     const needle = singleSum.innerHTML;
     const rawDoc = document.getElementById(emailID);
 
@@ -44,7 +59,7 @@ const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); ret
     rawDoc.innerHTML  = rawDoc.innerHTML.replace(needle, '<span class="highlight">'+needle+'</span>');
 }
 
-const removeStringHighlight = (sumID, emailID) => { //console.log(sumID, emailID); return;
+const removeStringHighlight = (sumID, emailID) => {
     const singleSum = document.getElementById('sum' +sumID);
     const activeSingleSum = document.getElementsByClassName('activeSingleSum')[0];
     const needle = singleSum.innerHTML;
@@ -56,7 +71,7 @@ const removeStringHighlight = (sumID, emailID) => { //console.log(sumID, emailID
     rawDoc.innerHTML  = rawDoc.innerHTML.replace('<span class="highlight">'+needle+'</span>', needle);
 }
 
-const scrollToEmail  = (emailID) => { //console.log(emailID); return;
+const scrollToEmail  = (emailID) => {
     const singleEmail = document.getElementById(emailID);
     const singleSummaryGroup = document.getElementById('sumGroup'+emailID);
     const activeEmail = document.getElementsByClassName('active')[0];
@@ -72,16 +87,16 @@ const scrollToEmail  = (emailID) => { //console.log(emailID); return;
     singleEmail.scrollIntoView({behavior: "smooth", block: "start", inline: "center"});
 }
 
-const SummaryNote = ({ parentId, notes, groupId }) => (
-    <li id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
+const SummaryNote = ({ parentId, notes, groupId, index }) => (
+    <li className={parentId === "email_1" ? "activeSum" :  ""} id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
         {Object.entries(notes).map(([noteId, note]) => {
-            const sumId = `sum${safeId(noteId)}`;
+            const sumId = `sum${safeId(noteId  + parentId)}`;
             return (
                 <p
                     id={sumId}
                     key={sumId}
-                    onMouseEnter={() => highlightString(noteId, parentId)}
-                    onMouseOut={() => removeStringHighlight(noteId, parentId)}
+                    onMouseEnter={() => highlightString((noteId + parentId), parentId)}
+                    onMouseOut={() => removeStringHighlight((noteId + parentId), parentId)}
                 >
                     {note}
                 </p>
@@ -95,8 +110,6 @@ const SummaryList = ({ data }) => (
         {Object.entries(data).map(([_id, entry]) => {
             const id = safeId(_id);
             const groupId = `sumGroup${id}`;
-
-            console.log('PARENT ID', id);
 
             if (entry.notes && entry.notes[0]) {
                 return (
@@ -125,11 +138,8 @@ const Summary = () => {
     const [data, setData] = React.useState(null);
     !data && emailRecords.load((data) => setData(data));
 
-    console.log('SUMMARY DATA', data);
-
     return data ? (
         <Div>
-            <h1>Summaries</h1>
             <ul>
                 <SummaryList data={data} />
             </ul>

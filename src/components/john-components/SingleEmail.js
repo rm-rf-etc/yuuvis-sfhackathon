@@ -7,7 +7,9 @@ const Email = styled.div`
     margin-bottom: 5px;
     border-radius: 1px;
     transition: all 300ms ease-in-out;
-    
+    p::selection {
+        background: #b9f4ed;
+    }
     &.active{
         background: white;
 	    opacity: 1;
@@ -96,7 +98,6 @@ const SingleEmail = (props) => {
     const showAddNote = () => {
         const selection = window.getSelection();
         const highlightedText = selection.toString();
-        console.log(selection.anchorNode.parentElement);
         if(highlightedText.length > 0){
             setHighlighted(true);
             setHighlightedText(highlightedText);
@@ -113,7 +114,7 @@ const SingleEmail = (props) => {
     const { from: _from, subject, body} = entry;
 
     return (
-        <Email id={id} key={id} onMouseUp={()=>showAddNote()}>
+        <Email className={id === "email_1" ? "active" : ""} id={id} key={id} onMouseUp={()=>showAddNote()}>
             <div className="email-header">
                 <p>{_from}@email.com</p>
                 <p>to Me</p>
