@@ -100,12 +100,21 @@ attachments.forEach(([parent, child]) => {
   gun.path(parent).set(gun.get(child));
 });
 
-const searchHandler = (
-  debounce((value) => console.log(value), 500, { 'maxWait': 1000 })
-);
 
-gun.path('user/1.searchString').on(searchHandler);
+const searchHandler = (value) => {
+  console.log(value);
+};
 
+gun.path('user/1.searchString').on(debounce(searchHandler, 500, { 'maxWait': 1000 }));
+gun.path('user/2.searchString').on(debounce(searchHandler, 500, { 'maxWait': 1000 }));
+
+const queryResponseHandler = (data, userId) => {
+  // const results = data.do_stuff_here();
+
+  results.forEach((each) => {
+    gun.path(`${userId}.searchResults`).set(each);
+  });
+};
 
 var textapi = new AYLIENTextAPI({
   application_id: "8e9d825d",
