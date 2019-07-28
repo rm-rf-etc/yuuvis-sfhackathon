@@ -1,0 +1,58 @@
+<schema xmlns="http://optimal-systems.org/ns/dmscloud/schema/v4.0/" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://optimal-systems.org/ns/dmscloud/schema/v4.0/ dmsCloud-schema.xsd">
+        
+	<propertyIntegerDefinition>
+		<id>thread</id>
+		<propertyType>integer</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyIntegerDefinition>
+
+	<propertyIntegerDefinition>
+		<id>emailId</id>
+		<propertyType>integer</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyIntegerDefinition>
+
+	<propertyIntegerDefinition>
+		<id>order</id>
+		<propertyType>integer</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyIntegerDefinition>
+
+	<propertyStringDefinition>
+		<id>rawText</id>
+		<propertyType>string</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyStringDefinition>
+
+	<propertyStringDefinition>
+		<id>summaryText</id>
+		<propertyType>string</propertyType>
+		<cardinality>single</cardinality>
+		<required>true</required>
+	</propertyStringDefinition>
+
+	<typeDocumentDefinition>
+		<id>email</id>
+		<baseId>enaio:document</baseId>
+		<propertyReference>rawText</propertyReference>
+		<propertyReference>thread</propertyReference>
+		<propertyReference>order</propertyReference>
+		<contentStreamAllowed>required</contentStreamAllowed>
+	</typeDocumentDefinition>
+
+	<typeDocumentDefinition>
+		<id>summary</id>
+		<baseId>enaio:document</baseId>
+		<propertyReference>summaryText</propertyReference>
+		<propertyReference>thread</propertyReference>
+		<propertyReference>order</propertyReference>
+		<contentStreamAllowed>required</contentStreamAllowed>
+	</typeDocumentDefinition>
+
+</schema>
