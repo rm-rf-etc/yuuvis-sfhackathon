@@ -38,9 +38,11 @@ const Div = styled.div`
 	display: flex;
 	text-align: left;
 	flex-direction: column;
-	padding: 5px;
+	padding: 15px;
 	overflow: hidden;
 	overflow-y: scroll;
+	border-top: 1px solid gray;
+	background: gray;
 	.raw-inner{
 	    padding-bottom: 400px;
 	}
@@ -49,44 +51,24 @@ const Div = styled.div`
 
 const Email = styled.div`
     padding: 15px;
-    background: #eeeeee;
-    margin-bottom: 5px;
-    border-radius: 1px;
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    opacity: .6;
     transition: all 300ms ease-in-out;
-    
     &.active{
-        background: white;
 	    opacity: 1;
 	}
 	.highlight{
-	    background: #efaba5;
-	}
-	.email-header{
-	    p{
-            margin: 0;
-            padding: 0;
-	        &:nth-child(1){
-	            font-weight: bold;
-	        }
-	        &:nth-child(2){
-	            font-size: 16px;
-	            margin-bottom: 10px;
-	        }
-	        span{
-	            font-weight: bold;
-	        }
-	        
-	    }
-	}
+	    background: yellow;
+	}	
 `;
 
 const email = (id, { to, from: _from, subject, body }) => (
     <Email id={`email${id+1}`} key={id+1}>
-        <div className="email-header">
-            <p>{_from}@email.com</p>
-            <p>to Me</p>
-            <p><span>Subject:</span> {subject}</p>
-        </div>
+        <p>From: {_from}</p>
+        <p>To: {to}</p>
+        <p>Subject: {subject}</p>
         <p id="rawDoc">{body}</p>
     </Email>
 );
@@ -97,7 +79,7 @@ const RawDoc = () => {
     return (
         <Div id="rawContainer">
             <div className="raw-inner">
-                <h1>Thread</h1>
+                <h1>RAW View</h1>
                 <React.Fragment>
                     {data.map((entry, id) => email(id, entry))}
                 </React.Fragment>

@@ -6,26 +6,24 @@ import SearchUi from './SearchUi';
 
 
 const Page = styled.div`
-    box-sizing: border-box;
+    padding: 20px;
 `;
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: row;
-	height: 100vh;
+	border: 2px solid gray;
+	height: calc(100vh - 42px);
 	max-height: 100vh;
-    background: #d8d8d8;
-    line-height: 22px;
-    h1{
-	    font-size: 24px;
-	}
+
 	.col{
 	    display: flex;
 	    flex: 1;
-	    &:nth-child(1){
-	        flex: .5;
+	    border-right: 1px solid gray;
+	    &:not():nth-child(2){
+	        border-right: 0;
 	    }
-	    &:nth-child(2){
+	    &:nth-child(1){
 	        flex: .5;
 	    }
 	}
