@@ -2,6 +2,33 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+const data = [
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+    },
+];
+
 const Div = styled.div`
 	display: flex;
 	text-align: left;
@@ -29,9 +56,17 @@ const Email = styled.div`
 	}
 	.highlight{
 	    background: yellow;
-	}
-	
+	}	
 `;
+
+const email = (id, { to, from: _from, subject, body }) => (
+    <Email id={`email${id+1}`} key={id+1}>
+        <p>From: {_from}</p>
+        <p>To: {to}</p>
+        <p>Subject: {subject}</p>
+        <p id="rawDoc">{body}</p>
+    </Email>
+);
 
 
 const RawDoc = () => {
@@ -40,38 +75,9 @@ const RawDoc = () => {
         <Div id="rawContainer">
             <div className="raw-inner">
                 <h1>RAW View</h1>
-                <Email id="email1">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email2">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email3">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email4">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
+                <React.Fragment>
+                    {data.map((entry, id) => email(id, entry))}
+                </React.Fragment>
             </div>
         </Div>
     );
