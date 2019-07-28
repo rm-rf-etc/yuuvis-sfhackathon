@@ -72,7 +72,6 @@ const ResultsList = styled.ul`
 `;
 
 
-
 const SearchUI = ({ results = [] }) => {
 
 	const [searchString, setSearch] = React.useState('');

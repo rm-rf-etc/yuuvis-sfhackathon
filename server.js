@@ -1,11 +1,15 @@
 const server = require('http').createServer();
+const axios = require('axios');
 const path = require('path');
 const Gun = require('gun');
 require('gun/lib/open.js');
 require('gun/lib/load.js');
 require('gun/lib/unset.js');
 
-var AYLIENTextAPI = require('aylien_textapi');
+const yuuvisSearch = axios.create({
+  baseURL: 'https://api.yuuvis.io',
+  headers: {'Ocp-Apim-Subscription-Key': '07e8d29a9b924834932472703ba32c06'}
+});
 
 const { debounce } = require('lodash');
 // require('@notabug/gun-lmdb').attachToGun(Gun, {
@@ -140,40 +144,44 @@ attachments.forEach(([parent, child]) => {
 });
 
 
-const searchHandler = (value) => {
-  console.log(value);
+// const searchHandler = async (userId, value) => {
+const searchHandler = async (value) => {
+
+  return console.log(value);
+
+  /*
+  const { data } = await yuuvisSearch.post('/dms/objects/search', {
+    query: {
+      maxItems: 50,
+      statement: `SELECT * FROM enaio:object WHERE CONTAINS('${value}')`,
+      skipCount: 0,
+    },
+  });
+
+  let matches = null;
+  if (data && data.objects) {
+    matches = data.objects.map((match) => match.properties['enaio:objectId'].value);
+  }
+
+  if (!matches || !matches.length) {
+  }
+  */
 };
 
-gun.get('users').map().get('searchString').on(debounce(searchHandler, 500, { 'maxWait': 1000 }));
+gun.get('users').map().get('searchString').on(debounce(searchHandler, 1000, { 'maxWait': 2000 }));
 
-const queryResponseHandler = (data, userId) => {
-  // const results = data.do_stuff_here();
+// const getSearchHandler = (userId) => {
+//   debounce(searchHandler, 1000, { 'maxWait': 2000 })
+// }
+// const users = gun.get('users')
+// users.map().once((user, id) => {
+//   users.get(id).get('searchString').on(getSearchHandler(id))
+// });
 
-  results.forEach((each) => {
-    gun.get(userId).get('searchResults').set(each);
-  });
-};
+// const queryResponseHandler = (data, userId) => {
+//   // const results = data.do_stuff_here();
 
-var textapi = new AYLIENTextAPI({
-  application_id: "8e9d825d",
-  application_key: "d515b564aa74cd8ccfeb10ffb2e8a99c",
-});
-
-async function summarize(email) {
-  let summaries = email;
-  textapi.summarize({
-    'text': email,
-    'title': 'placeholder'
-  },
-  function(error, response) {
-    if (error === null) {
-      console.log(response);
-      if (response.sentences.length === 0) {
-        response.sentences.push(text);
-      }
-      summaries = response.sentences;
-    }
-  });
-  return summaries;
-}
-
+//   results.forEach((each) => {
+//     gun.get(userId).get('searchResults').set(each);
+//   });
+// };
