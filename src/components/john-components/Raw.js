@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import * as sha256 from 'sha256';
 
 const data = [
     {
