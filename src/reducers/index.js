@@ -4,6 +4,9 @@ import actionTypes from '../actions/types';
 export default (state = initialState, action = {}) => {
 
   switch (action.type) {
+  	case actionTypes.EMAIL_DATA_LOADED: {
+  		return state;
+  	}
   	case actionTypes.USER_DATA_LOADED: {
   		return {
   			...state,

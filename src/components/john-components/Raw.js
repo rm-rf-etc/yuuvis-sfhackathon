@@ -1,84 +1,77 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { emailRecords } from '../../store';
+import SingleEmail from './SingleEmail';
+import { safeId } from '../../helpers';
 
 const Div = styled.div`
 	display: flex;
 	text-align: left;
 	flex-direction: column;
-	padding: 15px;
+	padding: 5px;
 	overflow: hidden;
 	overflow-y: scroll;
-	border-top: 1px solid gray;
-	background: gray;
 	.raw-inner{
 	    padding-bottom: 400px;
 	}
 	
 `;
 
-const Email = styled.div`
-    padding: 15px;
-    background: white;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    opacity: .6;
-    transition: all 300ms ease-in-out;
-    &.active{
-	    opacity: 1;
-	}
-	.highlight{
-	    background: yellow;
-	}
-	
-`;
+// const Email = styled.div`
+//     padding: 15px;
+//     background: #eeeeee;
+//     margin-bottom: 5px;
+//     border-radius: 1px;
+//     transition: all 300ms ease-in-out;
+    
+//     &.active{
+//         background: white;
+// 	    opacity: 1;
+// 	}
+// 	.highlight{
+// 	    background: #efaba5;
+// 	}
+// 	.email-header{
+// 	    p{
+//             margin: 0;
+//             padding: 0;
+// 	        &:nth-child(1){
+// 	            font-weight: bold;
+// 	        }
+// 	        &:nth-child(2){
+// 	            font-size: 16px;
+// 	            margin-bottom: 10px;
+// 	        }
+// 	        span{
+// 	            font-weight: bold;
+// 	        }
+	        
+// 	    }
+// 	}
+// `;
 
 
 const RawDoc = () => {
 
-    return (
+    const [data, setData] = React.useState(null);
+    !data && emailRecords.load((data) => setData(data));
+
+    return data ? (
         <Div id="rawContainer">
             <div className="raw-inner">
-                <h1>RAW View</h1>
-                <Email id="email1">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email2">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email3">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
-                <Email id="email4">
-                    <p>From: User1</p>
-                    <p>To: User2</p>
-                    <p>Subject: Please approve my vacation request</p>
-                    <p id="rawDoc">
-                        EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.
-                    </p>
-                </Email>
+                <h1>Thread</h1>
+                <React.Fragment>
+                    {Object.entries(data).map(([id, value]) => (
+                        <SingleEmail
+                            key={safeId(id)}
+                            id={safeId(id)}
+                            entry={value}
+                        />
+                    ))}
+                </React.Fragment>
             </div>
         </Div>
-    );
+    ) : null;
 };
 
-function mapStateToProps(state){
-    return state;
-}
-
-export default connect(mapStateToProps)(RawDoc);
+export default RawDoc;

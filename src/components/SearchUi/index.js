@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { setSearch } from '../../actions';
 import styled from 'styled-components';
+import { searchStringRecord } from '../../store';
+
 
 const Row = styled.div`
 	width: 100%;
@@ -11,7 +11,13 @@ const Input = styled.input`
 	box-sizing: border-box;
 `;
 
-const SearchUI = ({ setSearch, searchString, results = [] }) => {
+
+const SearchUI = ({ results = [] }) => {
+
+	const [searchString, setSearch] = React.useState('');
+	React.useEffect(() => () => {
+		searchStringRecord.once((str) => setSearch(str));
+	});
 
 	const processedResults = results.reduce((validResults, item) => {
 		if (item && item.value) {
@@ -29,7 +35,10 @@ const SearchUI = ({ setSearch, searchString, results = [] }) => {
 					type="text"
 					value={searchString}
 					placeholder="Your search query..."
-					onChange={({ target }) => setSearch(target.value)}
+					onChange={({ target }) => {
+						searchStringRecord.put(target.value);
+						setSearch(target.value);
+					}}
 				/>
 			</div>
 			<div>
@@ -39,12 +48,14 @@ const SearchUI = ({ setSearch, searchString, results = [] }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	searchString: state.searchString,
-	results: state.results,
-});
-const mapDispatchToProps = (dispatch) => ({
-	setSearch: (str) => dispatch(setSearch({ searchString: str })),
-});
+// const mapStateToProps = (state) => ({
+// 	searchString: state.searchString,
+// 	results: state.results,
+// });
+// const mapDispatchToProps = (dispatch) => ({
+// 	setSearch: (str) => dispatch(setSearch({ searchString: str })),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchUI);
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchUI);
+
+export default SearchUI;
