@@ -38,27 +38,29 @@ const Div = styled.div`
 	display: flex;
 	text-align: left;
 	flex-direction: column;
-	padding: 10px;
 	ul{
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;
+	    border-top: 1px solid gray;
+	    border-bottom: 1px solid gray;
 	    li{
-	        margin-bottom: 5px;
+	        border-bottom: 1px solid gray;
 	        padding: 15px;
-	        background: #eeeeee;
+	        background: white;
 	        transition: all 100ms ease-in-out;
 	        &.activeSum{
-	            background: white;
-	            opacity: 1;
+	            background: gray;
+	        }
+	        :last-child{
+	            border: 0;
 	        }
 	        p{
+	            background: white;
 	            padding: 5px;
-	            margin: 0;
 	            border-radius: 2px;
 	            &.activeSingleSum{
-	                color: #de5547;
-	                text-decoration: underline;
+	                background: yellow;
 	            }
 	        }
 	    }
@@ -154,7 +156,7 @@ const SummaryList = ({ data }) => (
 const Summary = () => {
     return (
         <Div>
-            <h1>Summaries</h1>
+            <h1>Thread Summaries</h1>
             <ul>
                 <SummaryList data={data} />
             </ul>
