@@ -25,7 +25,7 @@ const Container = styled.div`
 	    flex-direction: column;
 	    &:nth-child(1){
 	        flex: .5;
-	        background: #c5c4c4;
+	        background: white;
 	    }
 	    &:nth-child(2){
 	        flex: .5;

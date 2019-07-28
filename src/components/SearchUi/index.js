@@ -53,13 +53,21 @@ const ResultsList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
 	li{
 		background: white;
 		padding: 10px;
 		margin-bottom: 5px;
 		opacity: .6;
+		border-bottom: 1px solid gray;
 		&.activeThread{
 			opacity: 1;
+			background: #d8d8d8;
+			border-bottom: 0;
+		}
+		&:last-child{
+		    border-bottom: 0;
 		}
 		h3{
 			margin: 0;
@@ -67,7 +75,7 @@ const ResultsList = styled.ul`
 			margin-bottom: 5px;
 		}
 		p{
-			font-size: 16px;
+			font-size: 14px;
 			margin: 0;
 		}
 	}

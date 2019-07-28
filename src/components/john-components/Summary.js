@@ -31,11 +31,15 @@ const Div = styled.div`
 	            transform: scale(1);
 	            box-shadow: 0px 2px 37px -30px black;
 	            z-index: 99;
+	            p{
+	                pointer-events: all;
+	            }
 	        }
 	        p{
 	            padding: 5px;
 	            margin: 0;
 	            border-radius: 2px;
+	            pointer-events: none;
 	            &.activeSingleSum{
 	                color: #de5547;
 	                text-decoration: underline;
