@@ -1,7 +1,7 @@
 import { createLogic } from 'redux-logic';
 import { gun } from '../store';
 import { omit } from 'lodash';
-import { userDataLoaded, threadsLoaded, emailChanged } from '../actions';
+import { userDataLoaded, threadsLoaded } from '../actions';
 import actionTypes from '../actions/types';
 
 const userId = process.env.REACT_APP_USER_ID;

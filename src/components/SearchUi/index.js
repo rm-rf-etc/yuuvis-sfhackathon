@@ -1,7 +1,6 @@
 import React from 'react';
-import { setSearch } from '../../actions';
 import styled from 'styled-components';
-import { gun, searchStringRecord } from '../../store';
+import { searchStringRecord } from '../../store';
 
 
 const Row = styled.div`

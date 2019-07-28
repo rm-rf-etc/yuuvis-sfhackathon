@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { gun, emailRecords } from '../../store';
+import { emailRecords } from '../../store';
 import { safeId } from '../../helpers';
 
 const Div = styled.div`
