@@ -8,7 +8,7 @@ const data = [
         to: 'User2',
         subject: 'Please approve my vacation request',
         body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
-        summary: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
+        summaries: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
         notes: ['at an alarming rate', 'The consequences are proving to be profound', 'aquifers dry up'],
     },
     {
@@ -38,29 +38,27 @@ const Div = styled.div`
 	display: flex;
 	text-align: left;
 	flex-direction: column;
+	padding: 10px;
 	ul{
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;
-	    border-top: 1px solid gray;
-	    border-bottom: 1px solid gray;
 	    li{
-	        border-bottom: 1px solid gray;
+	        margin-bottom: 5px;
 	        padding: 15px;
-	        background: white;
+	        background: #eeeeee;
 	        transition: all 100ms ease-in-out;
 	        &.activeSum{
-	            background: gray;
-	        }
-	        :last-child{
-	            border: 0;
+	            background: white;
+	            opacity: 1;
 	        }
 	        p{
-	            background: white;
 	            padding: 5px;
+	            margin: 0;
 	            border-radius: 2px;
 	            &.activeSingleSum{
-	                background: yellow;
+	                color: #de5547;
+	                text-decoration: underline;
 	            }
 	        }
 	    }
@@ -132,7 +130,7 @@ const SummaryList = ({ data }) => (
             const groupId = `sumGroup${id}`;
 
             if (entry.notes && entry.notes.length) {
-                return <SummaryNote parentId={id} notes={entry.notes} groupId={groupId} />;
+                return <SummaryNote parentId={id} notes={entry.notes} groupId={groupId} subject={entry.subject} />;
             }
             return (
                 <li id={groupId} key={groupId} onClick={()=>scrollToEmail(id)}>
@@ -146,7 +144,7 @@ const SummaryList = ({ data }) => (
 const Summary = () => {
     return (
         <Div>
-            <h1>Thread Summaries</h1>
+            <h1>Summaries</h1>
             <ul>
                 <SummaryList data={data} />
             </ul>
