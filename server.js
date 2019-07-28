@@ -155,6 +155,10 @@ attachments.forEach(([parent, child]) => {
 
 // const searchHandler = async (userId, value) => {
 const searchHandler = async (value) => {
+
+  return console.log(value);
+
+  /*
   const { data } = await yuuvisSearch.post('/dms/objects/search', {
     query: {
       maxItems: 50,
@@ -170,6 +174,7 @@ const searchHandler = async (value) => {
 
   if (!matches || !matches.length) {
   }
+  */
 };
 
 gun.get('users').map().get('searchString').on(debounce(searchHandler, 1000, { 'maxWait': 2000 }));
