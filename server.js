@@ -184,16 +184,20 @@ const searchHandler = async (value) => {
 
     console.log('REQUEST DOCUMENT ID:', documentId);
 
-    const result = await axios.get(`https://api.yuuvis.io/dms/objects/${documentId}/contents/file`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': '07e8d29a9b924834932472703ba32c06',
-      }
-    });
-
-    console.log('DOCUMENT RESULT.DATA', result.data);
+    let result = null;
+    try {
+      result = await axios.get(`https://api.yuuvis.io/dms/objects/${documentId}/contents/file`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Ocp-Apim-Subscription-Key': '07e8d29a9b924834932472703ba32c06',
+        }
+      });
+    } catch (err) {
+      console.err(err);
+    }
 
     if (result && result.data) {
+      console.log('DOCUMENT RESULT.DATA', result.data);
 
       const { data } = result;
 
