@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import SingleEmail from './SingleEmail'
 
 const data = [
     {
@@ -80,26 +81,20 @@ const Email = styled.div`
 	}
 `;
 
-const email = (id, { to, from: _from, subject, body }) => (
-    <Email id={`email${id+1}`} key={id+1}>
-        <div className="email-header">
-            <p>{_from}@email.com</p>
-            <p>to Me</p>
-            <p><span>Subject:</span> {subject}</p>
-        </div>
-        <p id="rawDoc">{body}</p>
-    </Email>
-);
-
-
 const RawDoc = () => {
 
     return (
         <Div id="rawContainer">
             <div className="raw-inner">
-                <h1>Thread</h1>
+                <h1 >Thread</h1>
                 <React.Fragment>
-                    {data.map((entry, id) => email(id, entry))}
+                    {data.map((entry, id) => {
+                        return(
+                            <SingleEmail
+                                id={id + 1}
+                                entry={entry}
+                            />)
+                    })}
                 </React.Fragment>
             </div>
         </Div>
