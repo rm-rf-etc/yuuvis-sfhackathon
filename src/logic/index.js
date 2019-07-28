@@ -49,7 +49,7 @@ export const searchStateLogic = createLogic({
 
 		const { searchString } = action.payload;
 
-		await gun.get('user/1').get('searchString').put(searchString);
+		await gun.get(userId).get('searchString').put(searchString);
 
 		return done();
 	}
