@@ -4,6 +4,7 @@ import Summary from './john-components/Summary';
 import Raw from './john-components/Raw';
 import SearchUi from './SearchUi';
 
+
 const Page = styled.div`
     padding: 20px;
 `;
@@ -30,22 +31,22 @@ const Container = styled.div`
 
 const App = () => {
   return (
-      <Page>
-          <Container className="container">
-              <div className="col">
-                  {/*Search-UI area*/}
-                  <SearchUi />
-              </div>
-              <div className="col">
-                  {/*Summary display area*/}
-                  <Summary/>
-              </div>
-              <div className="col">
-                  {/*Raw Document display area*/}
-                  <Raw/>
-              </div>
-          </Container>
-      </Page>
+    <Page>
+      <Container className="container">
+        <div className="col">
+          {/*Search-UI area*/}
+          <SearchUi />
+        </div>
+        <div className="col">
+          {/*Summary display area*/}
+          <Summary/>
+        </div>
+        <div className="col">
+          {/*Raw Document display area*/}
+          <Raw/>
+        </div>
+      </Container>
+    </Page>
   );
 };
 

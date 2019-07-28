@@ -132,12 +132,19 @@ const SummaryList = ({ data }) => (
             const groupId = `sumGroup${id}`;
 
             if (entry.notes && entry.notes.length) {
-                return <SummaryNote parentId={id} notes={entry.notes} groupId={groupId} />;
+                return (
+                    <SummaryNote
+                        key={groupId}
+                        parentId={id}
+                        notes={entry.notes}
+                        groupId={groupId}
+                    />
+                );
             }
             return (
                 <li id={groupId} key={groupId} onClick={()=>scrollToEmail(id)}>
-                    {entry.summaries.map((summary) => (
-                        <p id="sentence2">{summary}</p>
+                    {entry.summaries.map((summary, sumId) => (
+                        <p key={sumId} id="sentence2">{summary}</p>
                     ))}
                 </li>
             );
