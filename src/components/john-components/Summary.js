@@ -39,7 +39,7 @@ const Div = styled.div`
 `;
 
 
-const highlightString = (sumID, emailID) => { //console.log(sumID, emailID); return;
+const highlightString = (sumID, emailID) => {
     const singleSum = document.getElementById('sum' + sumID);
     const needle = singleSum.innerHTML;
     const rawDoc = document.getElementById(emailID);

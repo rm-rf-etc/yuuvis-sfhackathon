@@ -6,7 +6,32 @@ let textapi = new AYLIENTextAPI({
     application_key: "d515b564aa74cd8ccfeb10ffb2e8a99c"
 });
 
-let fakeThread = [{'email': 'email1', 'summaries': ['sum1', 'sum2', 'sum3']}, {'email': 'email2', 'summaries': ['sum4', 'sum5', 'sum6']}, {'email': 'email3', 'summaries': ['sum7', 'sum8', 'sum9']}];
+let fakeThread = [
+    {
+        'email': 'email_1',
+        'summaries': [
+            'lorem ipsum delor sit amit',
+            'consectetuer adipiscing elit. Proin viverra',
+            'ligula sit amet ultrices semper',
+        ],
+    },
+    {
+        'email': 'email_2',
+        'summaries': [
+            'ligula arcu tristique sapien',
+            'a accumsan nisi mauris ac eros',
+            'Pellentesque libero tortor, tincidunt et',
+        ],
+    },
+    {
+        'email': 'email_3',
+        'summaries': [
+            'tincidunt eget, semper nec',
+            'quam. Nulla sit amet est',
+            'Sed magna purus, fermentum eu',
+        ]
+    }
+];
 
 async function summarize(email) {
     let summaries = email;
@@ -77,25 +102,25 @@ function createSummaryMetadata(user, threadID, emailID, summary_order, cid) {
 }
 
 
-function createImportFormdata(metadata, content){
+function createImportFormdata (metadata, content) {
     var formData = {}
     formData['data'] = {
-	value: metadata,
-	options: {
-	    contentType: 'application/json'
-	}
+    	value: metadata,
+    	options: {
+    	    contentType: 'application/json'
+    	}
+    };
+    formData['cid_0'] = {
+    	value: content,
+    	options: {
+    	    contentType: 'text/plain',
+    	    filename: 'stuff'
+    	}
     }
-    formData['cid_0']= {
-	value: content,
-	options: {
-	    contentType: 'text/plain',
-	    filename: 'stuff'
-	}
-    }
-  return formData;
+    return formData;
 }
 
-function yuuvis_call(body) {
+function yuuvis_call (body) {
     let req = {
          method: 'POST',
          uri: 'https://api.yuuvis.io/dms/objects',
@@ -105,12 +130,13 @@ function yuuvis_call(body) {
          formData: body
     };
 
-  request.post(req, function callback(err, httpResponse, body) {
-    if(err) throw err;
-    else {
-      console.log(httpResponse.statusCode)
-      console.log(body)
-  }})
+    request.post(req, function callback(err, httpResponse, body) {
+        if(err) throw err;
+        else {
+            console.log(httpResponse.statusCode)
+            console.log(body)
+        }
+    });
 }
 
 function yuuvis_insert(thread) {
@@ -122,37 +148,37 @@ function yuuvis_insert(thread) {
     	let emailID = uuid();
     	let email_order = i;
     	let email = thread[i].email;
-	let emailMetadata = createEmailMetadata(1, threadID, emailID, email_order, cid);
-	batchMetadata.objects.push(emailMetadata);
-	formData[`cid_${cid}`]= {
-	    value: email,
-	    options: {
-		contentType: 'text/plain',
-		filename: 'stuff'
-	    }
-	}
-	cid++;
+    	let emailMetadata = createEmailMetadata(1, threadID, emailID, email_order, cid);
+    	batchMetadata.objects.push(emailMetadata);
+    	formData[`cid_${cid}`] = {
+    	    value: email,
+    	    options: {
+        		contentType: 'text/plain',
+        		filename: 'stuff.txt',
+            }
+        };
+    	cid++;
     	for (let j = 0; j < thread[i].summaries.length; j++) {
     	    summary_order = j;
     	    let summary = thread[i].summaries[j];
-	    let summaryMetadata = createSummaryMetadata(1, threadID,
-							emailID, summary_order, cid);
-	    batchMetadata.objects.push(summaryMetadata);
-	    formData[`cid_${cid}`]= {
-		value: summary,
-		options: {
-		    contentType: 'text/plain',
-		    filename: 'stuff'
-		}
-	    }
-	    cid++;
+    	    let summaryMetadata = createSummaryMetadata(1, threadID,
+    							emailID, summary_order, cid);
+    	    batchMetadata.objects.push(summaryMetadata);
+    	    formData[`cid_${cid}`]= {
+        		value: summary,
+        		options: {
+        		    contentType: 'text/plain',
+        		    filename: 'stuff.txt'
+        		}
+    	    };
+    	    cid++;
     	}
     }
     formData['data'] = {
-	value: JSON.stringify(batchMetadata),
-	options: {
-	    contentType: 'application/json'
-	}
+    	value: JSON.stringify(batchMetadata),
+    	options: {
+    	    contentType: 'application/json'
+    	}
     }
     console.log(formData);
     yuuvis_call(formData);

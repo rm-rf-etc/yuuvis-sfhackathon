@@ -18,40 +18,6 @@ const Div = styled.div`
 	
 `;
 
-// const Email = styled.div`
-//     padding: 15px;
-//     background: #eeeeee;
-//     margin-bottom: 5px;
-//     border-radius: 1px;
-//     transition: all 300ms ease-in-out;
-    
-//     &.active{
-//         background: white;
-// 	    opacity: 1;
-// 	}
-// 	.highlight{
-// 	    background: #efaba5;
-// 	}
-// 	.email-header{
-// 	    p{
-//             margin: 0;
-//             padding: 0;
-// 	        &:nth-child(1){
-// 	            font-weight: bold;
-// 	        }
-// 	        &:nth-child(2){
-// 	            font-size: 16px;
-// 	            margin-bottom: 10px;
-// 	        }
-// 	        span{
-// 	            font-weight: bold;
-// 	        }
-	        
-// 	    }
-// 	}
-// `;
-
-
 const RawDoc = () => {
 
     const [data, setData] = React.useState(null);
