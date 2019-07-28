@@ -1,6 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+
+const data = [
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 1 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+        summary: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
+        notes: ['at an alarming rate', 'The consequences are proving to be profound', 'aquifers dry up'],
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 2 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+        summary: `Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.`,
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 3 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+        summary: `The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.`,
+    },
+    {
+        from: 'User1',
+        to: 'User2',
+        subject: 'Please approve my vacation request',
+        body: `EMAIL 4 Water is the driving force of all nature, Leonardo da Vinci claimed. Unfortunately for our planet, supplies are now running dry – at an alarming rate. The world’s population continues to soar but that rise in numbers has not been matched by an accompanying increase in supplies of fresh water. The consequences are proving to be profound. Across the globe, reports reveal huge areas in crisis today as reservoirs and aquifers dry up.`,
+        summary: `By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.`,
+    },
+];
 
 const Div = styled.div`
 	display: flex;
@@ -73,34 +105,50 @@ const scrollToEmail  = (emailID) => {
     singleEmail.scrollIntoView({behavior: "smooth", block: "start", inline: "center"});
 }
 
+const SummaryNote = ({ parentId, notes, groupId }) => (
+    <li id={groupId} key={groupId} onClick={()=>scrollToEmail(parentId)}>
+        {notes.map((note, _id) => {
+            const noteId = _id+1;
+            const sumId = `sum${noteId}`;
+
+            return (
+                <p
+                    id={sumId}
+                    key={sumId}
+                    onMouseEnter={() => highlightString(noteId, "1")}
+                    onMouseOut={() => removeStringHighlight(noteId,"1")}
+                >
+                    {note}
+                </p>
+            );
+        })}
+    </li>
+);
+
+const SummaryList = ({ data }) => (
+    <React.Fragment>
+        {data.map((entry, _id) => {
+            const id = _id+1;
+            const groupId = `sumGroup${id}`;
+
+            if (entry.notes && entry.notes.length) {
+                return <SummaryNote parentId={id} notes={entry.notes} groupId={groupId} />;
+            }
+            return (
+                <li id={groupId} key={groupId} onClick={()=>scrollToEmail(id)}>
+                    <p id="sentence2">{entry.summary}</p>
+                </li>
+            );
+        })}
+    </React.Fragment>
+)
+
 const Summary = () => {
     return (
         <Div>
             <h1>Thread Summaries</h1>
             <ul>
-                <li id="sumGroup1" onClick={()=>scrollToEmail("1")}>
-                    <p id="sum1"
-                       onMouseEnter={() => highlightString("1", "1")}
-                       onMouseOut={() => removeStringHighlight("1","1")}
-                    >at an alarming rate</p>
-                    <p id="sum2"
-                       onMouseEnter={() => highlightString("2","1")}
-                       onMouseOut={() => removeStringHighlight("2","1")}
-                    >The consequences are proving to be profound</p>
-                    <p id="sum3"
-                       onMouseEnter={() => highlightString("3","1")}
-                       onMouseOut={() => removeStringHighlight("3","1")}
-                    >aquifers dry up</p>
-                </li>
-                <li id="sumGroup2" onClick={()=>scrollToEmail("2")}>
-                    <p id="sentence2">Up to 75% of farmers rely on pumped groundwater to water their crops and water use is intensifying – at the same time that satellite images shows supplies are shrinking alarmingly.</p>
-                </li>
-                <li id="sumGroup3"  onClick={()=>scrollToEmail("3")}>
-                    <p id="sentence3">The nature of the problem is revealed by US Geological Survey figures, which show that the total amount of fresh water on Earth comes to about 10.6m cubic km.</p>
-                </li>
-                <li id="sumGroup4"  onClick={()=>scrollToEmail("4")}>
-                    <p id="sentence4">By contrast, the total volume from lakes and rivers, humanity’s main source of fresh water, produces a sphere that is a mere 56 km in diameter.</p>
-                </li>
+                <SummaryList data={data} />
             </ul>
         </Div>
     );
