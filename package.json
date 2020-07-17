@@ -7,7 +7,7 @@
     "aylien_textapi": "^0.7.0",
     "dotenv": "^8.0.0",
     "gun": "^0.2019.712",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
